@@ -1,0 +1,12 @@
+.grid__like {
+  background-image: url(../../../images/heart.svg);
+  width: 22px;
+  height: 19px;
+  margin-right: 5px;
+  align-self: center;
+  transition: opacity .3s;
+}
+
+.grid__like:hover {
+  opacity: 0.5;
+}

@@ -17,10 +17,17 @@
 @import url(../blocks/profile/__occupation/profile__occupation.css);
 @import url(../blocks/profile/__edit-button/profile__edit-button.css);
 @import url(../blocks/profile/__apply-button/profile__apply-button.css);
-@import url();
+@import url(../blocks/profile/__info-and-edit-button-container/profile__info-and-edit-button-container.css);
 
 
+@import url(../blocks/grid/grid.css);
+@import url(../blocks/grid/__list/grid__list.css);
+@import url(../blocks/grid/__item/grid__item.css);
+@import url(../blocks/grid/__image/grid__image.css);
+@import url(../blocks/grid/__city-box/grid__city-box.css);
+@import url(../blocks/grid/__city-name/grid__city-name.css);
+@import url(../blocks/grid/__like/grid__like.css);
 
 
-
-@import url();
+@import url(../blocks/footer/footer.css);
+@import url(../blocks/footer/__copyrights/footer__copyrights.css);
