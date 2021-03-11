@@ -7,3 +7,9 @@
   background-size: contain;
   background-repeat: no-repeat;
 }
+
+@media screen and (max-width: 767px) {
+  .profile__photo {
+    align-self: center;
+  }
+}

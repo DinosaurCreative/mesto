@@ -4,12 +4,24 @@
   height: 50px;
   border: 2px solid #ffffff;
   background-color: #000000;
-  font-size: 42px;
-  color: #ffffff;
-  padding-bottom: 9px;
-  line-height: 0;
-  text-align: center;
   background-image: url(../../../images/Cross.png);
   background-position: center;
   background-repeat: no-repeat;
+  background-size: 17px;
+  outline: none;
+  border-radius: 2px;
+  transition: opacity .3s linear;
+}
+
+.profile__apply-button:hover {
+  opacity: .6;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 767px) {
+  .profile__apply-button {
+    align-self: center;
+    width: 100%; 
+    margin: 36px auto;
+  }
 }

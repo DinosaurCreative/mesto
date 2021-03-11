@@ -1,3 +1,9 @@
 .grid {
-  margin: 51px 0 0 0;
+  margin-top: 51px;
+}
+
+@media screen and (max-width: 767px) {
+  .grid { 
+    margin: 0 ;
+  }
 }

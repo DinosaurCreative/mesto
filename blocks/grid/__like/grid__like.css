@@ -4,9 +4,14 @@
   height: 19px;
   margin-right: 5px;
   align-self: center;
-  transition: opacity .3s;
+  transition: opacity .3s linear;
 }
 
 .grid__like:hover {
   opacity: 0.5;
+  cursor: pointer;
 }
+
+/* .grid__like:active {
+  fill: #000;
+} */

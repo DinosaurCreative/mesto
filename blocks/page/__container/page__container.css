@@ -3,5 +3,22 @@
   max-width: 1280px;
   margin: 0 auto;
   padding: 0 200px;
-  border: 1px red solid;
+}
+
+@media screen and (max-width: 1279px) {
+  .page__container {
+    padding: 0 120px;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .page__container {
+    padding: 0 60px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .page__container {
+    padding: 0 19px;
+  }
 }
