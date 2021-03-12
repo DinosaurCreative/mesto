@@ -1,0 +1,27 @@
+.pop-up__cross {
+  position: absolute;
+  right: -50px;
+  top: -65px;
+  border: none;
+  background-color:transparent;
+  color: #fff;
+  font-size: 75px;
+  transform: rotate(45deg);
+  outline: none;
+  font-family: emoji;
+  font-weight: bold;
+  cursor: pointer;
+  transition: opacity .1s linear;
+}
+
+.pop-up__cross:hover {
+  opacity: .6;
+}
+
+@media screen and (max-width: 767px) {
+  .pop-up__cross {
+    right: -2px;
+    top: -62px;
+    font-size: 48px;
+  }
+}

@@ -12,11 +12,21 @@
       <a href="#" class="header__logo" target="_self"></a>
     </header>
     <main class="content">
+      <div class="pop-up pop-up_visible">
+        <div class="pop-up__overlay"></div>
+        <div class="pop-up__content">
+          <h3 class="pop-up__title">Редактировать профиль</h3>
+          <input type="submit" class="pop-up__cross" value="+">
+          <input type="text" placeholder="Жак-Ив Кусто" class="pop-up__input pop-up__input_name">
+          <input type="text" placeholder="Исследователь океана" class="pop-up__input pop-up__input_occupation">
+          <input class="pop-up__save-btn" value="Сохранить" type="submit">
+        </div>
+      </div>
       <section class="profile">
         <div class="profile__photo"></div>
         <div class="profile__info-and-edit-button-container">
           <div class="profile__info">
-            <h2 class="profile__name">Жак-Ив Кусто</h2>
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
             <p class="profile__occupation">Исследователь океана</p> 
           </div>
           <button class="profile__edit-button"></button>
@@ -28,42 +38,43 @@
           <li class="grid__item">
             <img src="./images/Джомолунгма.jpg" alt="Сноубордист катиться с горы" class="grid__image">
             <div class="grid__city-box">
-              <h3 class="grid__city-name">Джомолунгма</h3>
-              <div class="grid__like"></div>
+              <h2 class="grid__city-name">Джомолунгма</h2>
+              <div class="grid__like">
+              </div>
             </div>
           </li>
           <li class="grid__item">
             <img src="./images/Амстердам.jpg" alt="Городская площадь в Амстердаме" class="grid__image">
             <div class="grid__city-box">
-              <h3 class="grid__city-name">Амстердам</h3>
+              <h2 class="grid__city-name">Амстердам</h2>
               <div class="grid__like"></div>
             </div>
           </li>
           <li class="grid__item">
             <img src="./images/Апатиты.jpg" alt="Собаки в упряжке" class="grid__image">
             <div class="grid__city-box">
-              <h3 class="grid__city-name">Апатиты</h3>
+              <h2 class="grid__city-name">Апатиты</h2>
               <div class="grid__like"></div>
             </div>
           </li>
           <li class="grid__item">
-            <img src="./images/Machu Pikchu.jpg" alt="Поселение Инков в горах" class="grid__image">
+            <img src="./images/Machu_Pikchu.jpg" alt="Поселение Инков в горах" class="grid__image">
             <div class="grid__city-box">
-              <h3 class="grid__city-name">Мачу-Пикчу</h3>
+              <h2 class="grid__city-name">Мачу-Пикчу</h2>
               <div class="grid__like"></div>
             </div>
           </li>
           <li class="grid__item">
             <img src="./images/Камчатка.jpg" alt="Вулкан вблизи города" class="grid__image">
             <div class="grid__city-box">
-              <h3 class="grid__city-name">Камчатка</h3>
+              <h2 class="grid__city-name">Камчатка</h2>
               <div class="grid__like"></div>
             </div>
           </li>
           <li class="grid__item">
             <img src="./images/Деревня.jpg" alt="Деревня" class="grid__image">
             <div class="grid__city-box">
-              <h3 class="grid__city-name">Деревня</h3>
+              <h2 class="grid__city-name">Деревня</h2>
               <div class="grid__like"></div>
             </div>
           </li>
