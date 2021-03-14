@@ -1,10 +1,10 @@
-.profile__info-and-edit-button-container {
+.profile__info-container {
   display: flex;
   margin: 0;
 }
 
 @media screen and (max-width: 767px) {
-  .profile__info-and-edit-button-container {
+  .profile__info-container {
     align-self: center; 
     margin: auto;
   }

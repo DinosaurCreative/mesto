@@ -1,4 +1,4 @@
-.pop-up__cross {
+.popup__cross {
   position: absolute;
   right: -50px;
   top: -65px;
@@ -14,12 +14,12 @@
   transition: opacity .1s linear;
 }
 
-.pop-up__cross:hover {
+.popup__cross:hover {
   opacity: .6;
 }
 
 @media screen and (max-width: 767px) {
-  .pop-up__cross {
+  .popup__cross {
     right: -2px;
     top: -62px;
     font-size: 48px;

@@ -12,19 +12,19 @@
       <a href="#" class="header__logo" target="_self"></a>
     </header>
     <main class="content">
-      <div class="pop-up pop-up_visible">
-        <div class="pop-up__overlay"></div>
-        <div class="pop-up__content">
-          <h3 class="pop-up__title">Редактировать профиль</h3>
-          <input type="submit" class="pop-up__cross" value="+">
-          <input type="text" placeholder="Жак-Ив Кусто" class="pop-up__input pop-up__input_name">
-          <input type="text" placeholder="Исследователь океана" class="pop-up__input pop-up__input_occupation">
-          <input class="pop-up__save-btn" value="Сохранить" type="submit">
-        </div>
+      <div class="popup">
+        <div class="popup__overlay"></div>
+        <form class="popup__container" action="">
+          <h3 class="popup__title">Редактировать профиль</h3>
+          <input type="text" placeholder="Жак-Ив Кусто" class="popup__input popup__input_name">
+          <input type="text" placeholder="Исследователь океана" class="popup__input popup__input_occupation">
+          <input class="popup__save-btn" value="Сохранить" type="submit">
+          <input type="submit" class="popup__cross" value="+">
+        </form>
       </div>
       <section class="profile">
         <div class="profile__photo"></div>
-        <div class="profile__info-and-edit-button-container">
+        <div class="profile__info-container">
           <div class="profile__info">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <p class="profile__occupation">Исследователь океана</p> 
@@ -85,5 +85,6 @@
       <p class="footer__copyrights">&copy; 2020 Mesto Russia</p>
     </footer>
   </div>  
+  <script src="./script/index.js"></script>
 </body>
 </html>
