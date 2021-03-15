@@ -4,12 +4,12 @@
   display: flex;
 }
 
-
 @media screen and (max-width: 1279px) {
   .header {
     min-height: 104px;
   }
 }
+
 @media screen and (max-width: 1023px) {
   .header {
     min-height: 94px;

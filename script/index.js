@@ -4,7 +4,7 @@ let popupContainer = page.querySelector('.popup__container');
 
 let popup = page.querySelector('.popup');
 
-let addButton = popupContainer.querySelector('.popup__save-btn');
+let addButton = page.querySelector('.popup__save-btn');
 
 let closeButton = popupContainer.querySelector('.popup__cross');
 
@@ -18,13 +18,14 @@ let profileOccupation = profile.querySelector('.profile__occupation');
 
 let editButton = profile.querySelector('.profile__edit-button');
  
-let nameAutoFill = popupContainer.querySelector('.popup__input_name');
+let nameInputInitialValue = popupContainer.querySelector('.popup__input_type_name');
 
-let occupationAutoFill = popupContainer.querySelector('.popup__input_occupation');
+let occupationInputInitialValue = popupContainer.querySelector('.popup__input_type_occupation');
 
-nameAutoFill.value = profileName.textContent;
 
-occupationAutoFill.value = profileOccupation.textContent;
+nameInputInitialValue.value = profileName.textContent;
+
+occupationInputInitialValue.value = profileOccupation.textContent;
 
 
 function showOrHidePopup(evt) {
@@ -43,9 +44,9 @@ closeButton.addEventListener('click', showOrHidePopup);
 function applyInfoChanges(evt) {
   evt.preventDefault();
   
-  let inputName = popupContainer.querySelector('.popup__input_name');
+  let inputName = popupContainer.querySelector('.popup__input_type_name');
 
-  let inputOccupation = popupContainer.querySelector('.popup__input_occupation');
+  let inputOccupation = popupContainer.querySelector('.popup__input_type_occupation');
 
   profileName.textContent = inputName.value;
 
@@ -56,5 +57,4 @@ function applyInfoChanges(evt) {
 }
 
 addButton.addEventListener('click', applyInfoChanges);
-
 

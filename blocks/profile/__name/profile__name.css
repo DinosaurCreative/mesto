@@ -6,11 +6,10 @@
   margin: 22px 0 0 0;
   max-width: 470px;
   width: auto;
-  flex-wrap: wrap;
   white-space: pre-wrap;
   white-space: -moz-pre-wrap;
   white-space: -o-pre-wrap; 
-  word-wrap: break-word;
+  word-wrap: break-word;  
 }
 
 @media screen and (max-width: 1279px) {
@@ -18,11 +17,13 @@
     max-width: 400px;
   }
 }
+
 @media screen and (max-width: 1023px) {
   .profile__name {
-    max-width: 400px;
+    max-width: 305px;
   }
 }
+
 @media screen and (max-width: 767px) {
   .profile__name {
     text-align: center;

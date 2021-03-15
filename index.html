@@ -2,8 +2,8 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="stylesheet" href="./pages/index.css"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./pages/index.css">
   <title>Место</title>
 </head>
 <body class="page">
@@ -14,10 +14,10 @@
     <main class="content">
       <div class="popup">
         <div class="popup__overlay"></div>
-        <form class="popup__container" action="">
+        <form class="popup__container">
           <h3 class="popup__title">Редактировать профиль</h3>
-          <input type="text" placeholder="Жак-Ив Кусто" class="popup__input popup__input_name" maxlength="20">
-          <input type="text" placeholder="Исследователь океана" class="popup__input popup__input_occupation">
+          <input type="text" placeholder="Имя" class="popup__input popup__input_type_name" maxlength="25">
+          <input type="text" placeholder="Професиия" class="popup__input popup__input_type_occupation" maxlength="25">
           <input class="popup__save-btn" value="Сохранить" type="submit">
           <input type="submit" class="popup__cross" value="+">
         </form>
@@ -27,7 +27,7 @@
         <div class="profile__info-container">
           <div class="profile__info">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <p class="profile__occupation">Исследователь океана</p> 
+            <p class="profile__occupation">Исследователь океана</p>
           </div>
           <button class="profile__edit-button"></button>
         </div>
@@ -36,17 +36,17 @@
       <section class="grid">
         <ul class="grid__list">
           <li class="grid__item">
-            <img src="./images/Джомолунгма.jpg" alt="Сноубордист катиться с горы" class="grid__image">
+            <img src="./images/Джомолунгма.jpg" alt="Сноубордист катиться с горы Эльбрус" class="grid__image">
             <div class="grid__city-box">
-              <h2 class="grid__city-name">Джомолунгма</h2>
+              <h2 class="grid__city-name">Эльбрус</h2>
               <div class="grid__like">
               </div>
             </div>
           </li>
           <li class="grid__item">
-            <img src="./images/Амстердам.jpg" alt="Городская площадь в Амстердаме" class="grid__image">
+            <img src="./images/Амстердам.jpg" alt="Городская площадь в Санкт-Петербурге" class="grid__image">
             <div class="grid__city-box">
-              <h2 class="grid__city-name">Амстердам</h2>
+              <h2 class="grid__city-name">Санкт-Петербург</h2>
               <div class="grid__like"></div>
             </div>
           </li>
@@ -58,21 +58,21 @@
             </div>
           </li>
           <li class="grid__item">
-            <img src="./images/Machu_Pikchu.jpg" alt="Поселение Инков в горах" class="grid__image">
+            <img src="./images/Machu_Pikchu.jpg" alt="Древний город Мачупикчинск в Краснодарском крае" class="grid__image">
             <div class="grid__city-box">
-              <h2 class="grid__city-name">Мачу-Пикчу</h2>
+              <h2 class="grid__city-name">Краснодарский край</h2>
               <div class="grid__like"></div>
             </div>
           </li>
           <li class="grid__item">
-            <img src="./images/Камчатка.jpg" alt="Вулкан вблизи города" class="grid__image">
+            <img src="./images/Камчатка.jpg" alt="Авачинская сопка на Камчатке" class="grid__image">
             <div class="grid__city-box">
               <h2 class="grid__city-name">Камчатка</h2>
               <div class="grid__like"></div>
             </div>
           </li>
           <li class="grid__item">
-            <img src="./images/Деревня.jpg" alt="Деревня" class="grid__image">
+            <img src="./images/Деревня.jpg" alt="Деревенские дома" class="grid__image">
             <div class="grid__city-box">
               <h2 class="grid__city-name">Деревня</h2>
               <div class="grid__like"></div>
@@ -84,7 +84,7 @@
     <footer class="footer">
       <p class="footer__copyrights">&copy; 2020 Mesto Russia</p>
     </footer>
-  </div>  
+  </div>
   <script src="./script/index.js"></script>
 </body>
 </html>
