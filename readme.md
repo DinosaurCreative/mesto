@@ -29,6 +29,6 @@
 
 **ссылка на проект**
 
-[Russian Traveling](https://dinosaurcreative.github.io/mesto/)
+[Mesto](https://dinosaurcreative.github.io/mesto/)
 
 
