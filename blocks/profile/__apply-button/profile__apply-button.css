@@ -21,7 +21,7 @@
 @media screen and (max-width: 767px) {
   .profile__apply-button {
     align-self: center;
-    width: 100%; 
+    width: 100%;
     margin: 36px auto;
   }
 }
