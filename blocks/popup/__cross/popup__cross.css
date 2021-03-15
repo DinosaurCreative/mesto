@@ -1,17 +1,17 @@
 .popup__cross {
   position: absolute;
   right: -50px;
-  top: -65px;
+  top: -43px;
   border: none;
   background-color: transparent;
-  color: #fff;
-  font-size: 75px;
   transform: rotate(45deg);
   outline: none;
-  font-family: emoji;
-  font-weight: bold;
   cursor: pointer;
   transition: opacity .1s linear;
+  background-image: url(../../../images/Cross.png);
+  background-size: cover;
+  width: 40px;
+  height: 40px;
 }
 
 .popup__cross:hover {
@@ -23,5 +23,7 @@
     right: -2px;
     top: -62px;
     font-size: 48px;
+    width: 26px;
+    height: 26px;
   }
 }
