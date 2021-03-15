@@ -28,6 +28,12 @@
     text-align: center;
     font-size: 27px;
     line-height: 32.68px;
-    max-width: 270px;
+    max-width: 370px;
+  }
+}
+
+@media screen and (max-width: 470px) {
+  .profile__name {
+    max-width: 220px;
   }
 }
