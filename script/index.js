@@ -1,60 +1,28 @@
 let page = document.querySelector('.page');
-
-let popupContainer = page.querySelector('.popup__container');
-
 let popup = page.querySelector('.popup');
-
 let addButton = page.querySelector('.popup__save-btn');
+let closeButton = page.querySelector('.popup__cross');
+let editButton = page.querySelector('.profile__edit-button');
+let profileName = page.querySelector('.profile__name');
+let profileOccupation = page.querySelector('.profile__occupation');
+let inputName = page.querySelector('.popup__input_type_name');
+let inputOccupation = page.querySelector('.popup__input_type_occupation');
 
-let closeButton = popupContainer.querySelector('.popup__cross');
-
-let profile = page.querySelector('.profile');
-
-let profileInfo = profile.querySelector('.profile__info');
-
-let profileName = profile.querySelector('.profile__name');
-
-let profileOccupation = profile.querySelector('.profile__occupation');
-
-let editButton = profile.querySelector('.profile__edit-button');
- 
-let nameInputInitialValue = popupContainer.querySelector('.popup__input_type_name');
-
-let occupationInputInitialValue = popupContainer.querySelector('.popup__input_type_occupation');
-
-
-nameInputInitialValue.value = profileName.textContent;
-
-occupationInputInitialValue.value = profileOccupation.textContent;
-
-
-function showOrHidePopup(evt) {
+function showOrHidePopup(evt) { 
   popup.classList.toggle('popup_opened');
-
+  inputName.value = profileName.textContent;
+  inputOccupation.value = profileOccupation.textContent;
   evt.preventDefault();
 }
 
-
 editButton.addEventListener('click', showOrHidePopup);
-
-
 closeButton.addEventListener('click', showOrHidePopup);
-
 
 function applyInfoChanges(evt) {
   evt.preventDefault();
-  
-  let inputName = popupContainer.querySelector('.popup__input_type_name');
-
-  let inputOccupation = popupContainer.querySelector('.popup__input_type_occupation');
-
   profileName.textContent = inputName.value;
-
   profileOccupation.textContent = inputOccupation.value;
-  
   showOrHidePopup();
-  
 }
 
-addButton.addEventListener('click', applyInfoChanges);
-
+addButton.addEventListener('submit', applyInfoChanges);
