@@ -2,8 +2,8 @@
   background-image: url(../../../images/logo/Vector.svg);
   width: 142px;
   height: 33px;
-  align-self: center;
   transition: opacity .3s linear;
+  margin: 45px auto 41px 0;
 }
 
 .header__logo:hover {

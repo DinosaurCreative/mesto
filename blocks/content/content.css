@@ -1,26 +1,22 @@
-.footer {
-  margin: 67px auto 60px auto;
+.content {
+  margin: 0 auto;
   padding: 0 200px;
 }
 
-
-
 @media screen and (max-width: 1279px) {
-  .footer {
+  .content {
     padding: 0 120px;
   }
 }
 
 @media screen and (max-width: 1023px) {
-  .footer {
+  .content {
     padding: 0 60px;
   }
 }
 
-
 @media screen and (max-width: 767px) {
-  .footer {
-    margin: 48px auto 36px auto;
+  .content {
     padding: 0 19px;
   }
 }
