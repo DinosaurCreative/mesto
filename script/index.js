@@ -7,6 +7,7 @@ let profileName = page.querySelector('.profile__name');
 let profileOccupation = page.querySelector('.profile__occupation');
 let inputName = page.querySelector('.popup__input_type_name');
 let inputOccupation = page.querySelector('.popup__input_type_occupation');
+let inputForm = page.querySelector('.popup__input-form');
 
 function showOrHidePopup(evt) { 
   popup.classList.toggle('popup_opened');
@@ -25,4 +26,4 @@ function applyInfoChanges(evt) {
   showOrHidePopup();
 }
 
-addButton.addEventListener('submit', applyInfoChanges);
+inputForm.addEventListener('submit', applyInfoChanges);
