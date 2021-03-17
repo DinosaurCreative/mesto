@@ -4,6 +4,7 @@
   height: 33px;
   transition: opacity .3s linear;
   margin: 45px auto 41px 0;
+  background-position: left;
 }
 
 .header__logo:hover {
