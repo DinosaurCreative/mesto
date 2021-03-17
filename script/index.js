@@ -6,7 +6,7 @@ let profileName = page.querySelector('.profile__name');
 let profileOccupation = page.querySelector('.profile__occupation');
 let inputName = page.querySelector('.popup__input_type_name');
 let inputOccupation = page.querySelector('.popup__input_type_occupation');
-let inputForm = page.querySelector('.popup__input-form');
+let inputForm = page.querySelector('.popup__form');
 
 function showPopup() {
   popup.classList.add('popup_opened');
