@@ -9,11 +9,10 @@ let inputName = page.querySelector('.popup__input_type_name');
 let inputOccupation = page.querySelector('.popup__input_type_occupation');
 let inputForm = page.querySelector('.popup__input-form');
 
-function showOrHidePopup(evt) { 
+function showOrHidePopup() {
   popup.classList.toggle('popup_opened');
   inputName.value = profileName.textContent;
   inputOccupation.value = profileOccupation.textContent;
-  evt.preventDefault();
 }
 
 editButton.addEventListener('click', showOrHidePopup);

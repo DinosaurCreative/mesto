@@ -20,9 +20,9 @@
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <p class="profile__occupation">Исследователь океана</p>
           </div>
-          <button class="profile__edit-button" type="button"></button>
+          <button class="profile__edit-button" aria-label="Редактировать профиль" type="button"></button>
         </div>
-        <button class="profile__apply-button" type="button"></button>
+        <button class="profile__apply-button" aria-label="Кнопка без функционала" type="button"></button>
       </section>
       <section class="grid">
         <ul class="grid__list">
@@ -30,42 +30,42 @@
             <img src="./images/Джомолунгма.jpg" alt="Сноубордист катится с горы Эльбрус" class="grid__image">
             <div class="grid__city-box">
               <h2 class="grid__city-name">Эльбрус</h2>
-              <button class="grid__like"></button>
+              <button aria-label="Кнопка лайк" class="grid__like"></button>
             </div>
           </li>
           <li class="grid__item">
             <img src="./images/Амстердам.jpg" alt="Городская площадь в Санкт-Петербурге" class="grid__image">
             <div class="grid__city-box">
               <h2 class="grid__city-name">Санкт-Петербург</h2>
-              <button class="grid__like"></button>
+              <button aria-label="Кнопка лайк" class="grid__like"></button>
             </div>
           </li>
           <li class="grid__item">
             <img src="./images/Апатиты.jpg" alt="Собаки в упряжке" class="grid__image">
             <div class="grid__city-box">
               <h2 class="grid__city-name">Апатиты</h2>
-              <button class="grid__like"></button>
+              <button aria-label="Кнопка лайк" class="grid__like"></button>
             </div>
           </li>
           <li class="grid__item">
             <img src="./images/Machu_Pikchu.jpg" alt="Древний город Мачупикчинск в Краснодарском крае" class="grid__image">
             <div class="grid__city-box">
               <h2 class="grid__city-name">Краснодарский край</h2>
-              <button class="grid__like"></button>
+              <button aria-label="Кнопка лайк" class="grid__like"></button>
             </div>
           </li>
           <li class="grid__item">
             <img src="./images/Камчатка.jpg" alt="Авачинская сопка на Камчатке" class="grid__image">
             <div class="grid__city-box">
               <h2 class="grid__city-name">Камчатка</h2>
-              <button class="grid__like"></button>
+              <button aria-label="Кнопка лайк" class="grid__like"></button>
             </div>
           </li>
           <li class="grid__item">
             <img src="./images/Деревня.jpg" alt="Деревенские дома" class="grid__image">
             <div class="grid__city-box">
               <h2 class="grid__city-name">Деревня</h2>
-              <button class="grid__like"></button>
+              <button aria-label="Кнопка лайк" class="grid__like"></button>
             </div>
           </li>
         </ul>
@@ -79,13 +79,13 @@
     <div class="popup__container">
       <h3 class="popup__title">Редактировать профиль</h3>
       <form class="popup__input-form" name="popup__input-form">
-        <input type="text" placeholder="Имя" name="name"class="popup__input popup__input_type_name">
+        <input type="text" placeholder="Имя" name="name" class="popup__input popup__input_type_name">
         <input type="text" placeholder="Професиия" name="occupation" class="popup__input popup__input_type_occupation">
         <input class="popup__save-btn" value="Сохранить" type="submit">
       </form>
-      <button class="popup__cross" type="reset"></button>    
+      <button class="popup__cross" aria-label="Закрыть без сохранения" type="reset"></button>
     </div>
-  </div>  
+  </div>
   <script src="./script/index.js"></script>
 </body>
 </html>

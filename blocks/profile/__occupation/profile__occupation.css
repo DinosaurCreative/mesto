@@ -10,7 +10,6 @@
   overflow: hidden;
 }
 
-
 @media screen and (max-width: 1279px) {
   .profile__occupation {
     max-width: 400px;
