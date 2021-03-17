@@ -5,6 +5,11 @@
   flex-direction: column;
 }
 
+.header:after {
+  content: '';
+  border-bottom: 1px rgba(54, 54, 54, .7) solid;
+}
+
 @media screen and (max-width: 1279px) {
   .header {
     padding: 0 120px;
