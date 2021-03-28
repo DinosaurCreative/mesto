@@ -24,50 +24,7 @@
         <button class="profile__add-button" aria-label="Кнопка добавления фото" type="button"></button>
       </section>
       <section class="grid">
-        <ul class="grid__list">
-          <li class="grid__item">
-            <img src="./images/Джомолунгма.jpg" alt="Сноубордист катится с горы Эльбрус" class="grid__image">
-            <div class="grid__city-box">
-              <h2 class="grid__city-name">Эльбрус</h2>
-              <button aria-label="Кнопка лайк" class="grid__like" type="button"></button>
-            </div>
-          </li>
-          <li class="grid__item">
-            <img src="./images/Амстердам.jpg" alt="Городская площадь в Санкт-Петербурге" class="grid__image">
-            <div class="grid__city-box">
-              <h2 class="grid__city-name">Санкт-Петербург</h2>
-              <button aria-label="Кнопка лайк" class="grid__like" type="button"></button>
-            </div>
-          </li>
-          <li class="grid__item">
-            <img src="./images/Апатиты.jpg" alt="Собаки в упряжке" class="grid__image">
-            <div class="grid__city-box">
-              <h2 class="grid__city-name">Апатиты</h2>
-              <button aria-label="Кнопка лайк" class="grid__like" type="button"></button>
-            </div>
-          </li>
-          <li class="grid__item">
-            <img src="./images/Machu_Pikchu.jpg" alt="Древний город Мачупикчинск в Краснодарском крае" class="grid__image">
-            <div class="grid__city-box">
-              <h2 class="grid__city-name">Краснодарский край</h2>
-              <button aria-label="Кнопка лайк" class="grid__like" type="button"></button>
-            </div>
-          </li>
-          <li class="grid__item">
-            <img src="./images/Камчатка.jpg" alt="Авачинская сопка на Камчатке" class="grid__image">
-            <div class="grid__city-box">
-              <h2 class="grid__city-name">Камчатка</h2>
-              <button aria-label="Кнопка лайк" class="grid__like" type="button"></button>
-            </div>
-          </li>
-          <li class="grid__item">
-            <img src="./images/Деревня.jpg" alt="Деревенские дома" class="grid__image">
-            <div class="grid__city-box">
-              <h2 class="grid__city-name">Деревня</h2>
-              <button aria-label="Кнопка лайк" class="grid__like" type="button"></button>
-            </div>
-          </li>
-        </ul>
+        <ul class="grid__list"></ul>
       </section>
     </main>
     <footer class="footer">
@@ -82,25 +39,26 @@
         <input type="text" placeholder="Професиия" name="occupation" class="popup__input popup__input_type_occupation">
         <input class="popup__save-btn" value="Сохранить" type="submit">
       </form>
-      <button class="popup__cross popup__cross_info-edit aria-label="Закрыть без сохранения" type="button"></button>
+      <button class="popup__cross popup__cross_info-edit" aria-label="Закрыть без сохранения" type="button"></button>
     </div>
   </div>
-  <div class="popup popup_image-add">
+  <div class="popup popup_type_image">
     <div class="popup__container">
       <h3 class="popup__title">Новое место</h3>
-      <form class="popup__form popup__form_type_image_add" name="popup-form">
+      <form class="popup__form popup__form_type_image" name="popup-form">
         <input type="text" placeholder="Назание" name="title" class="popup__input popup__input_type_image-title">
         <input type="text" placeholder="Ссылка на картинку" name="link" class="popup__input popup__input_type_image-link">
-        <input class="popup__save-btn" value="Сохранить" type="submit">
+        <input class="popup__save-btn popup__save-btn_type_image" value="Сохранить" type="submit">
       </form>
-      <button class="popup__cross popup__cross_image-add" aria-label="Закрыть без сохранения" type="button"></button>
+      <button class="popup__cross popup__cross_type_image" aria-label="Закрыть без сохранения" type="button"></button>
     </div>
   </div>
-  <template class="grid-item">
+  <template id="grid_item">
     <li class="grid__item">
       <img src="" alt="" class="grid__image">
+      <!-- <button class="grid__delete-btn"></button> -->
       <div class="grid__city-box">
-        <h2 class="grid__city-name">Апатиты</h2>
+        <h2 class="grid__city-name"></h2>
         <button aria-label="Кнопка лайк" class="grid__like" type="button"></button>
       </div>
     </li>
