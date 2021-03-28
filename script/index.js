@@ -97,106 +97,20 @@ function addCard(picture, link) {
   const gridItem = gridItemTemplate.querySelector('.grid__item').cloneNode(true);
   gridItem.querySelector('.grid__city-name').textContent = picture;
   gridItem.querySelector('.grid__image').src = link;
+  const likeButton = gridItem.querySelector('.grid__like');
+  likeButton.addEventListener('click', (event) => {
+    event.target.classList.toggle('grid__like_type_dark');
+  })
   gridList.prepend(gridItem);
 }
-// Автодобавления карточек из массива 
+// Автодобавление карточек из массива 
 initialCards.forEach(item => {
   addCard(item.name, item.link);
 })
 
-//  Вызов функции добавления карточки 
+// Вызов функции добавления карточки 
 submitChangesImagePopup.addEventListener('submit', (evt) => {
   evt.preventDefault();
   addCard(inputCityTitle.value, inputlink.value);
   hidePopup(popupImage);
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// // блок popup_type_image 
-
-// переменные блока popup_type_image
-// const inputFormImagePopup = page.querySelector('.popup__form_type_image');
-// const inputImageTitle = page.querySelectorAll('.popup__input_type_image-title');
-// const inputImageLink = page.querySelectorAll('.popup__input_type_image-link');
-// функции
-
-
-// // слушатели  
-
-
-// inputFormImagePopup.addEventListener('submit', (evt) => {
-//   evt.preventDefault();
-//   const inputImageTitle = page.querySelectorAll('.popup__input_type_image-title');
-//   const inputImageLink = page.querySelectorAll('.popup__input_type_image-link');
-//   addCard(inputImageLink.value, inputImageTitle.value);
-  
-//   hidePopup(popupImage);
-// });
-
-
-
-
-
-// // Блок добавление грид элемента
-
-// // Объявление переменных
-// const girdList = document.querySelector('.grid__list');  // Div, в который добавляются грид ячейки
-// const gridItemTemplate = document.querySelector('#grid_item').content;   //  шаблон
-// const gridItem = gridItemTemplate.cloneNode(true);  // Занесение шаблона в переменную
-
-// // функция добавления карточки
-
-// function addCard(imageLink, cityName) {
-//   gridItem.querySelector('.grid__image').src = imageLink;
-//   gridItem.querySelector('.grid__city-name').textContent = cityName;
-//   girdList.append(gridItem);
-// }
-
-// // проходчик по массиву
-
-// initialCards.forEach( item => {
-  
-//   gridItemTitle.textContent = item.name;
-//   gridItemImage.src = item.link;
-  
-//   girdLIst.append(gridItem);
-// })
-
-// // слушатели
