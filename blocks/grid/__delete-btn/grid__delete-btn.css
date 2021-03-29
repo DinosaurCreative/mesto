@@ -1,0 +1,22 @@
+.grid__delete-btn {
+  background-image: url(../../../images/Trash.svg);
+  position: absolute;
+  align-self: center;
+  transition: opacity .3s linear;
+  outline: none;
+  border: 0;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  width: 18px;
+  height: 19.3px;
+  right: 18px;
+  top: 18px;
+  transition: transform .3s, opacity .3s;
+}
+
+.grid__delete-btn:hover {
+  cursor: pointer;
+  transform: scale(1.3);
+  opacity: .8;
+  
+}

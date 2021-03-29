@@ -101,6 +101,11 @@ function addCard(picture, link) {
   likeButton.addEventListener('click', (event) => {
     event.target.classList.toggle('grid__like_type_dark');
   })
+  const deleteButton = gridItem.querySelector('.grid__delete-btn');
+  deleteButton.addEventListener('click', () => {
+    gridItem.remove();
+  })
+
   gridList.prepend(gridItem);
 }
 // Автодобавление карточек из массива 

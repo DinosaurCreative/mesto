@@ -43,7 +43,7 @@
 @import url(../blocks/grid/__city-name/grid__city-name.css);
 @import url(../blocks/grid/__like/grid__like.css);
 @import url(../blocks/grid/__like/_type/grid__like_type_dark.css);
-@import url(../blocks/grid/__like/_type/grid__like_type_white.css);
+@import url(../blocks/grid/__delete-btn/grid__delete-btn.css);
 
 
 
