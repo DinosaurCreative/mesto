@@ -119,3 +119,8 @@ submitChangesImagePopup.addEventListener('submit', (evt) => {
   addCard(inputCityTitle.value, inputlink.value);
   hidePopup(popupImage);
 });
+
+
+// viewer попап
+
+// переменные 
