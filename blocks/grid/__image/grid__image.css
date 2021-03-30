@@ -2,8 +2,12 @@
   object-fit: cover;
   min-width: 282px;
   height: 282px;
+  min-height: 282px;
   width: 100%;
+  background-image: url(../../../images/Error.jpg);
+  background-size: cover;
 }
+
 .grid__image:hover {
- cursor: pointer;
+  cursor: pointer;
 }

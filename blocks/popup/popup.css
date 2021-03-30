@@ -8,6 +8,6 @@
   display: grid;
   background-color: rgba(0, 0, 0, 0.5);
   visibility: hidden;
-  opacity: 0; 
+  opacity: 0;
   transition: visibility .5s linear, opacity .5s;
 }
