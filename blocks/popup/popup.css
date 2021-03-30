@@ -8,6 +8,9 @@
   display: none;
   background-color: rgba(0, 0, 0, 0.5);
   visibility: hidden;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
   opacity: 0;
   transition: visibility .4s linear, opacity .4s;
 }
