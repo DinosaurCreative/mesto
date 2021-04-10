@@ -1,25 +1,3 @@
-const page = document.querySelector('.page');
-const closeButtonInfoEdit = page.querySelector('.popup__cross_info-edit');
-const editButton = page.querySelector('.profile__edit-button');
-const profileName = page.querySelector('.profile__name');
-const profileOccupation = page.querySelector('.profile__occupation');
-const inputName = page.querySelector('.popup__input_type_name');
-const inputOccupation = page.querySelector('.popup__input_type_occupation');
-const inputFormEditor = page.querySelector('.popup__form_type_editor');
-const popupInfoEdit = page.querySelector('.popup_info-edit');
-const addButton = page.querySelector('.profile__add-button');
-const popupImage = page.querySelector('.popup_type_image');
-const closeImagePopup = page.querySelector('.popup__cross_type_image');
-const submitChangesImageHandler = page.querySelector('.popup__form_type_image');
-const gridItemTemplate = page.querySelector('#grid_item').content;
-const gridList = page.querySelector('.grid__list');
-const inputCityTitle = page.querySelector('.popup__input_type_image-title');
-const inputlink = page.querySelector('.popup__input_type_image-link');
-const popupViewer = page.querySelector('.popup_type_viewer');
-const closeViewerBtn = popupViewer.querySelector('.popup__cross_type_viewer');
-const imageLink = popupViewer.querySelector('.popup__image');
-const imageName = popupViewer.querySelector('.popup__image-title');
-
 function preventPopupVisibilityUntilStylesDownload() {
   popupImage.classList.add('popup_visible');
   popupInfoEdit.classList.add('popup_visible');
@@ -56,6 +34,21 @@ function clearImageInputPopup() {
 
 function showPopup(className) {
   className.classList.add('popup_opened');
+  function addEscButtonPopupClosure(evt) {
+    if (evt.key === 'Escape') {
+      hidePopup(className);
+      page.removeEventListener('keydown', addEscButtonPopupClosure)
+    }
+  }
+  page.addEventListener('keydown', addEscButtonPopupClosure);
+
+  function addOutlineClickPopupClosure(evt){
+    if (evt.target.classList[0] === 'popup') {
+      hidePopup(className);
+      page.removeEventListener('click', addOutlineClickPopupClosure);
+    };
+  }
+  page.addEventListener('click', addOutlineClickPopupClosure);
 }
 
 function hidePopup(className) {
@@ -139,3 +132,4 @@ closeViewerBtn.addEventListener('click', () => {
   hidePopup(popupViewer);
   setTimeout(resetViewerPopup, 500)
 });
+
