@@ -34,21 +34,14 @@ function clearImageInputPopup() {
 
 function showPopup(className) {
   className.classList.add('popup_opened');
-  function addEscButtonPopupClosure(evt) {
-    if (evt.key === 'Escape') {
+  function addClosureFeature(evt) {
+    if (evt.key === 'Escape' || evt.target.classList[0] === 'popup') {
       hidePopup(className);
-      page.removeEventListener('keydown', addEscButtonPopupClosure)
+      page.removeEventListener(evt.type, addClosureFeature)
     }
   }
-  page.addEventListener('keydown', addEscButtonPopupClosure);
-
-  function addOutlineClickPopupClosure(evt){
-    if (evt.target.classList[0] === 'popup') {
-      hidePopup(className);
-      page.removeEventListener('click', addOutlineClickPopupClosure);
-    };
-  }
-  page.addEventListener('click', addOutlineClickPopupClosure);
+  page.addEventListener('keydown', addClosureFeature);
+  page.addEventListener('click', addClosureFeature);
 }
 
 function hidePopup(className) {
