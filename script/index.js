@@ -11,12 +11,6 @@ function createDataObjectFromImgPopup(name, link) {
   return newPic;
 }
 
-function resetViewerPopup() {
-  imageLink.src = '';
-  imageName.textContent = '';
-  imageLink.alt = '';
-}
-
 function defineAltSrcNameData(item, image, name) {
   image.src = item.link;
   name.textContent = item.name;
@@ -32,20 +26,34 @@ function clearImageInputPopup() {
   inputlink.value = '';
 }
 
-function showPopup(className) {
-  className.classList.add('popup_opened');
-  function addClosureFeature(evt) {
-    if (evt.key === 'Escape' || evt.target.classList[0] === 'popup') {
-      hidePopup(className);
-      page.removeEventListener(evt.type, addClosureFeature)
-    }
+const handleClosePopup = evt => {
+  console.log(evt.target);
+  if (evt.key === 'Escape' || evt.target.classList.contains('popup')) {
+    const openedPopup = document.querySelector('.popup_opened');
+    hidePopup(openedPopup);
   }
-  page.addEventListener('keydown', addClosureFeature);
-  page.addEventListener('click', addClosureFeature);
+}
+
+function enableClickListener() {
+  document.addEventListener('click', handleClosePopup);
+}
+
+function enableEscapeListener() {
+  document.addEventListener('keydown', handleClosePopup);
+}
+
+function showPopup(className) {
+  clearImageInputPopup();
+  className.classList.add('popup_opened');
+  enableEscapeListener();
+  enableClickListener();
+
 }
 
 function hidePopup(className) {
   className.classList.remove('popup_opened');
+  document.removeEventListener('keydown', handleClosePopup);
+  document.removeEventListener('click', handleClosePopup);
 }
 
 function addCurrentTextToInput() {
@@ -91,8 +99,8 @@ initialCards.forEach(item => {
 setTimeout(preventPopupVisibilityUntilStylesDownload, 1000);
 
 editButton.addEventListener('click', () => {
-  showPopup(popupInfoEdit);
   addCurrentTextToInput();
+  showPopup(popupInfoEdit);
 });
 
 closeButtonInfoEdit.addEventListener('click', () => {
@@ -111,18 +119,14 @@ addButton.addEventListener('click', () => {
 
 closeImagePopup.addEventListener('click', () => {
   hidePopup(popupImage);
-  setTimeout(clearImageInputPopup, 500)
 });
 
 submitChangesImageHandler.addEventListener('submit', evt => {
   evt.preventDefault();
   addCard(createDataObjectFromImgPopup(inputCityTitle.value, inputlink.value));
-  setTimeout(clearImageInputPopup, 500)
   hidePopup(popupImage);
 });
 
 closeViewerBtn.addEventListener('click', () => {
   hidePopup(popupViewer);
-  setTimeout(resetViewerPopup, 500)
 });
-
