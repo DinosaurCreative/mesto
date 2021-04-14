@@ -35,7 +35,7 @@ function clearImageInputPopup() {
 function showPopup(className) {
   className.classList.add('popup_opened');
   function addClosureFeature(evt) {
-    if (evt.key === 'Escape' || evt.target.classList[0] === 'popup') {
+    if (evt.key === 'Escape' || evt.target.classList.contains('popup')) {
       hidePopup(className);
       page.removeEventListener(evt.type, addClosureFeature)
     }
