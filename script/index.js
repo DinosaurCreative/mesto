@@ -49,18 +49,26 @@ const resetInputError = className => {
   });
 };
 
+const setPopupEvtListener = (evtType, callback) => {
+  document.addEventListener(evtType, callback);
+}
+
 const showPopup = className => {
   resetInputError(className);
   clearImageInputPopup();
   className.classList.add('popup_opened');
-  document.addEventListener('click', handleClosePopup);
-  document.addEventListener('keydown', handleClosePopup);
+  setPopupEvtListener('click', handleClosePopup);
+  setPopupEvtListener('keydown', handleClosePopup);
+};
+
+const removePopupEvtListener = (evtType, callback) => {
+  document.removeEventListener(evtType, callback);
 };
 
 const hidePopup = className => {
   className.classList.remove('popup_opened');
-  document.removeEventListener('keydown', handleClosePopup);
-  document.removeEventListener('click', handleClosePopup);
+  removePopupEvtListener('keydown', handleClosePopup);
+  removePopupEvtListener('click', handleClosePopup);
 };
 
 const addCurrentTextToInput = () => {
