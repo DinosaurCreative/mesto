@@ -6,7 +6,7 @@
   border: 0;
   height: 50px;
   cursor: pointer;
-  transition: opacity .3s ease-in, background-color .15s ease-out;
+  transition: opacity .3s ease-in, background-color .2s ease-out;
   border-radius: 2px;
   outline: none;
   font-size: 18px;

@@ -1,73 +1,79 @@
-function preventPopupVisibilityUntilStylesDownload() {
+const preventPopupVisibilityUntilStylesDownload = () => {
   popupImage.classList.add('popup_visible');
   popupInfoEdit.classList.add('popup_visible');
   popupViewer.classList.add('popup_visible');
-}
+};
 
-function createDataObjectFromImgPopup(name, link) {
+const createDataObjectFromImgPopup = (name, link) => {
   const newPic = {};
   newPic.name = name;
   newPic.link = link;
   return newPic;
-}
+};
 
-function defineAltSrcNameData(item, image, name) {
+const defineAltSrcNameData = (item, image, name) => {
   image.src = item.link;
   name.textContent = item.name;
   if (image.hasAttribute('alt')) {
     image.removeAttribute('alt');
   } else {
-    image.setAttribute('alt', item.name)
-  }; 
-}
+    image.setAttribute('alt', item.name);
+  };
+};
 
-function clearImageInputPopup() {
+const clearImageInputPopup = () => {
   inputCityTitle.value = '';
   inputlink.value = '';
-}
+};
 
 const handleClosePopup = evt => {
-  console.log(evt.target);
   if (evt.key === 'Escape' || evt.target.classList.contains('popup')) {
     const openedPopup = document.querySelector('.popup_opened');
     hidePopup(openedPopup);
-  }
-}
+  };
+};
 
-function enableClickListener() {
-  document.addEventListener('click', handleClosePopup);
-}
+const activateButton = () => {
+  profileEditorSubmitBtn.classList.remove('popup__save-btn_type_disabled');
+  profileEditorSubmitBtn.disabled = false;
+};
 
-function enableEscapeListener() {
-  document.addEventListener('keydown', handleClosePopup);
-}
+const resetInputError = className => {
+  const errorList = Array.from(className.querySelectorAll('.popup__input-error'));
+  const inputList = Array.from(className.querySelectorAll('.popup__input'));
+  errorList.forEach(errorElement => {
+    errorElement.classList.remove('popup__input-error_visible');
+  });
+  inputList.forEach(inputElement => {
+    inputElement.classList.remove('popup__input_type_error');
+  });
+};
 
-function showPopup(className) {
+const showPopup = className => {
+  resetInputError(className);
   clearImageInputPopup();
   className.classList.add('popup_opened');
-  enableEscapeListener();
-  enableClickListener();
+  document.addEventListener('click', handleClosePopup);
+  document.addEventListener('keydown', handleClosePopup);
+};
 
-}
-
-function hidePopup(className) {
+const hidePopup = className => {
   className.classList.remove('popup_opened');
   document.removeEventListener('keydown', handleClosePopup);
   document.removeEventListener('click', handleClosePopup);
-}
+};
 
-function addCurrentTextToInput() {
+const addCurrentTextToInput = () => {
   inputName.value = profileName.textContent;
   inputOccupation.value = profileOccupation.textContent;
-}
+};
 
-function applyProfileInfoChanges() {
+const applyProfileInfoChanges = () => {
   profileName.textContent = inputName.value;
   profileOccupation.textContent = inputOccupation.value;
-}
+};
 
-function addCard(item) {
-  if (!item.link) return
+const addCard = item => {
   const gridItem = gridItemTemplate.querySelector('.grid__item').cloneNode(true);
   const deleteButton = gridItem.querySelector('.grid__delete-btn');
   const likeButton = gridItem.querySelector('.grid__like');
@@ -81,7 +87,7 @@ function addCard(item) {
   });
 
   gridImage.addEventListener('click', () => {
-    defineAltSrcNameData(item, imageLink, imageName); 
+    defineAltSrcNameData(item, imageLink, imageName);
     showPopup(popupViewer);
   });
 
@@ -90,7 +96,7 @@ function addCard(item) {
   });
 
   gridList.prepend(gridItem);
-}
+};
 
 initialCards.forEach(item => {
   addCard(item);
@@ -100,6 +106,7 @@ setTimeout(preventPopupVisibilityUntilStylesDownload, 1000);
 
 editButton.addEventListener('click', () => {
   addCurrentTextToInput();
+  activateButton();
   showPopup(popupInfoEdit);
 });
 
@@ -115,6 +122,9 @@ inputFormEditor.addEventListener('submit', evt => {
 
 addButton.addEventListener('click', () => {
   showPopup(popupImage);
+  const buttonElement = popupImage.querySelector('.popup__save-btn');
+  buttonElement.disabled = true;
+  buttonElement.classList.add('popup__save-btn_type_disabled');
 });
 
 closeImagePopup.addEventListener('click', () => {

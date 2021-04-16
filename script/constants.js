@@ -19,3 +19,4 @@ const popupViewer = page.querySelector('.popup_type_viewer');
 const closeViewerBtn = popupViewer.querySelector('.popup__cross_type_viewer');
 const imageLink = popupViewer.querySelector('.popup__image');
 const imageName = popupViewer.querySelector('.popup__image-title');
+const profileEditorSubmitBtn = popupInfoEdit.querySelector('.popup__save-btn');
