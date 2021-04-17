@@ -61,7 +61,6 @@ const setPopupEvtListener = (evtType, callback) => {
 };
 
 const showPopup = className => {
-  clearImageInputPopup();
   className.classList.add('popup_opened');
   setPopupEvtListener('click', handleClosePopupWithOverlayClick);
   setPopupEvtListener('keydown', handleClosePopupWithEscBtn);
@@ -128,6 +127,7 @@ editButton.addEventListener('click', () => {
   addCurrentTextToInput();
   activateButton();
   resetInputError(popupInfoEdit);
+
   showPopup(popupInfoEdit);
 });
 
@@ -142,6 +142,7 @@ inputFormEditor.addEventListener('submit', evt => {
 });
 
 addButton.addEventListener('click', () => {
+  clearImageInputPopup();
   resetInputError(popupImage);
   showPopup(popupImage);
   buttonElement.disabled = true;
