@@ -54,7 +54,7 @@ const setPopupEvtListener = (evtType, callback) => {
 }
 
 const showPopup = className => {
-  resetInputError(className);
+  // resetInputError(className);
   clearImageInputPopup();
   className.classList.add('popup_opened');
   setPopupEvtListener('click', handleClosePopup);
@@ -115,6 +115,7 @@ setTimeout(preventPopupVisibilityUntilStylesDownload, 1000);
 editButton.addEventListener('click', () => {
   addCurrentTextToInput();
   activateButton();
+  resetInputError(popupInfoEdit);
   showPopup(popupInfoEdit);
 });
 
@@ -129,6 +130,7 @@ inputFormEditor.addEventListener('submit', evt => {
 });
 
 addButton.addEventListener('click', () => {
+  resetInputError(popupImage);
   showPopup(popupImage);
   const buttonElement = popupImage.querySelector('.popup__save-btn');
   buttonElement.disabled = true;
