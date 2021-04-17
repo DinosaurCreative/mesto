@@ -26,8 +26,15 @@ const clearImageInputPopup = () => {
   inputlink.value = '';
 };
 
-const handleClosePopup = evt => {
-  if (evt.key === 'Escape' || evt.target.classList.contains('popup')) {
+const handleClosePopupWithEscBtn = evt => {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened');
+    hidePopup(openedPopup);
+  };
+};
+
+const handleClosePopupWithOverlayClick = evt => {
+  if (evt.target.classList.contains('popup')) {
     const openedPopup = document.querySelector('.popup_opened');
     hidePopup(openedPopup);
   };
@@ -56,8 +63,8 @@ const setPopupEvtListener = (evtType, callback) => {
 const showPopup = className => {
   clearImageInputPopup();
   className.classList.add('popup_opened');
-  setPopupEvtListener('click', handleClosePopup);
-  setPopupEvtListener('keydown', handleClosePopup);
+  setPopupEvtListener('click', handleClosePopupWithOverlayClick);
+  setPopupEvtListener('keydown', handleClosePopupWithEscBtn);
 };
 
 const removePopupEvtListener = (evtType, callback) => {
@@ -66,8 +73,8 @@ const removePopupEvtListener = (evtType, callback) => {
 
 const hidePopup = className => {
   className.classList.remove('popup_opened');
-  removePopupEvtListener('keydown', handleClosePopup);
-  removePopupEvtListener('click', handleClosePopup);
+  removePopupEvtListener('keydown', handleClosePopupWithEscBtn);
+  removePopupEvtListener('click', handleClosePopupWithOverlayClick);
 };
 
 const addCurrentTextToInput = () => {
