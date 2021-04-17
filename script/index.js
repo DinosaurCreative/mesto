@@ -51,10 +51,9 @@ const resetInputError = className => {
 
 const setPopupEvtListener = (evtType, callback) => {
   document.addEventListener(evtType, callback);
-}
+};
 
 const showPopup = className => {
-  // resetInputError(className);
   clearImageInputPopup();
   className.classList.add('popup_opened');
   setPopupEvtListener('click', handleClosePopup);
@@ -81,7 +80,7 @@ const applyProfileInfoChanges = () => {
   profileOccupation.textContent = inputOccupation.value;
 };
 
-const addCard = item => {
+const createCard = item => {
   const gridItem = gridItemTemplate.querySelector('.grid__item').cloneNode(true);
   const deleteButton = gridItem.querySelector('.grid__delete-btn');
   const likeButton = gridItem.querySelector('.grid__like');
@@ -99,12 +98,18 @@ const addCard = item => {
     showPopup(popupViewer);
   });
 
-  likeButton.addEventListener('click', event => {
-    event.target.classList.toggle('grid__like_type_dark');
+  likeButton.addEventListener('click', evt => {
+    evt.target.classList.toggle('grid__like_type_dark');
   });
 
-  gridList.prepend(gridItem);
+  return gridItem;
 };
+
+const addCard = item => {
+  const gridItem = createCard(item);
+  
+  gridList.prepend(gridItem);
+}
 
 initialCards.forEach(item => {
   addCard(item);
@@ -132,7 +137,6 @@ inputFormEditor.addEventListener('submit', evt => {
 addButton.addEventListener('click', () => {
   resetInputError(popupImage);
   showPopup(popupImage);
-  const buttonElement = popupImage.querySelector('.popup__save-btn');
   buttonElement.disabled = true;
   buttonElement.classList.add('popup__save-btn_type_disabled');
 });

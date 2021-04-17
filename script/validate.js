@@ -34,6 +34,7 @@ const toggleButtonState = (buttonElement, inputElements, config) => {
 const setInputListener = (formElement, config) => {
   const inputElements = Array.from(formElement.querySelectorAll(config.inputSelector));
   const buttonElement = formElement.querySelector(config.submitButtonSelector);
+  
   inputElements.forEach(inputElement => {
     inputElement.addEventListener('input', () => {
       validateInput(formElement, inputElement, config);
