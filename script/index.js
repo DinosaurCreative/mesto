@@ -1,3 +1,5 @@
+import { Card } from './card.js';
+
 const preventPopupVisibilityUntilStylesDownload = () => {
   popupImage.classList.add('popup_visible');
   popupInfoEdit.classList.add('popup_visible');
@@ -9,16 +11,6 @@ const createDataObjectFromImgPopup = (name, link) => {
   newPic.name = name;
   newPic.link = link;
   return newPic;
-};
-
-const defineAltSrcNameData = (item, image, name) => {
-  image.src = item.link;
-  name.textContent = item.name;
-  if (image.hasAttribute('alt')) {
-    image.removeAttribute('alt');
-  } else {
-    image.setAttribute('alt', item.name);
-  };
 };
 
 const clearImageInputPopup = () => {
@@ -86,39 +78,13 @@ const applyProfileInfoChanges = () => {
   profileOccupation.textContent = inputOccupation.value;
 };
 
-const createCard = item => {
-  const gridItem = gridItemTemplate.querySelector('.grid__item').cloneNode(true);
-  const deleteButton = gridItem.querySelector('.grid__delete-btn');
-  const likeButton = gridItem.querySelector('.grid__like');
-  const gridImage = gridItem.querySelector('.grid__image');
-  const gridCityName = gridItem.querySelector('.grid__city-name');
-  
-  defineAltSrcNameData(item, gridImage, gridCityName);
-
-  deleteButton.addEventListener('click', () => {
-    gridItem.remove();
-  });
-
-  gridImage.addEventListener('click', () => {
-    defineAltSrcNameData(item, imageLink, imageName);
-    showPopup(popupViewer);
-  });
-
-  likeButton.addEventListener('click', evt => {
-    evt.target.classList.toggle('grid__like_type_dark');
-  });
-
-  return gridItem;
-};
-
-const addCard = item => {
-  const gridItem = createCard(item);
-  
-  gridList.prepend(gridItem);
+const addCard = (item, openPopup, closePopup) => {
+  const newCard = new Card(item, openPopup, closePopup);
+  gridList.prepend(newCard.generateCard());
 }
 
 initialCards.forEach(item => {
-  addCard(item);
+  addCard(item, showPopup, hidePopup);
 });
 
 setTimeout(preventPopupVisibilityUntilStylesDownload, 1000);
@@ -135,6 +101,10 @@ closeButtonInfoEdit.addEventListener('click', () => {
   hidePopup(popupInfoEdit);
 });
 
+closeImagePopup.addEventListener('click', () => {
+  hidePopup(popupImage);
+});
+
 inputFormEditor.addEventListener('submit', evt => {
   evt.preventDefault();
   applyProfileInfoChanges();
@@ -149,16 +119,8 @@ addButton.addEventListener('click', () => {
   buttonElement.classList.add('popup__save-btn_type_disabled');
 });
 
-closeImagePopup.addEventListener('click', () => {
-  hidePopup(popupImage);
-});
-
 submitChangesImageHandler.addEventListener('submit', evt => {
   evt.preventDefault();
-  addCard(createDataObjectFromImgPopup(inputCityTitle.value, inputlink.value));
+  addCard(createDataObjectFromImgPopup(inputCityTitle.value, inputlink.value), showPopup, hidePopup);
   hidePopup(popupImage);
-});
-
-closeViewerBtn.addEventListener('click', () => {
-  hidePopup(popupViewer);
 });
