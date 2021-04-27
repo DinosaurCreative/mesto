@@ -2,12 +2,6 @@ import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js';
 import { initialCards } from './cards.js'
 
-const preventPopupVisibilityUntilStylesDownload = () => {
-  popupImage.classList.add('popup_visible');
-  popupInfoEdit.classList.add('popup_visible');
-  popupViewer.classList.add('popup_visible');
-};
-
 const createDataObjectFromImgPopup = (name, link) => {
   const newPic = {};
 
@@ -95,8 +89,6 @@ formValidation.enableValidation();
 initialCards.forEach(item => {
   addCard(item, showPopup, hidePopup, '#grid_item');
 });
-
-setTimeout(preventPopupVisibilityUntilStylesDownload, 1000);
 
 editButton.addEventListener('click', () => {
   addCurrentTextToInput();
