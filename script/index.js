@@ -1,4 +1,5 @@
-import { Card } from './card.js';
+import { Card } from './Card.js';
+import { FormValidator } from './FormValidator.js';
 
 const preventPopupVisibilityUntilStylesDownload = () => {
   popupImage.classList.add('popup_visible');
@@ -10,6 +11,7 @@ const createDataObjectFromImgPopup = (name, link) => {
   const newPic = {};
   newPic.name = name;
   newPic.link = link;
+
   return newPic;
 };
 
@@ -81,7 +83,11 @@ const applyProfileInfoChanges = () => {
 const addCard = (item, openPopup, closePopup) => {
   const newCard = new Card(item, openPopup, closePopup);
   gridList.prepend(newCard.generateCard());
-}
+};
+
+const formValidation = new FormValidator(config);
+
+formValidation.enableValidation();
 
 initialCards.forEach(item => {
   addCard(item, showPopup, hidePopup);
@@ -93,7 +99,6 @@ editButton.addEventListener('click', () => {
   addCurrentTextToInput();
   activateButton();
   resetInputError(popupInfoEdit);
-
   showPopup(popupInfoEdit);
 });
 

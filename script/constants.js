@@ -17,3 +17,11 @@ const inputlink = page.querySelector('.popup__input_type_image-link');
 const popupViewer = page.querySelector('.popup_type_viewer');
 const profileEditorSubmitBtn = popupInfoEdit.querySelector('.popup__save-btn');
 const buttonElement = popupImage.querySelector('.popup__save-btn');
+const config = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__save-btn',
+  inactiveButtonClass: 'popup__save-btn_type_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__input-error_visible'
+};

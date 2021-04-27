@@ -53,7 +53,6 @@ export class Card {
     image.src = this._data.link;
     image.setAttribute('alt', this._data.name);
     name.textContent = this._data.name;
-    
     this._showPopup(popupViewer); 
     closeButton.addEventListener('click', () => this._hidePopup(popupViewer));
   }
