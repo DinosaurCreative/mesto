@@ -9,6 +9,7 @@ const preventPopupVisibilityUntilStylesDownload = () => {
 
 const createDataObjectFromImgPopup = (name, link) => {
   const newPic = {};
+
   newPic.name = name;
   newPic.link = link;
 
@@ -42,6 +43,7 @@ const activateButton = () => {
 const resetInputError = className => {
   const errorList = Array.from(className.querySelectorAll('.popup__input-error'));
   const inputList = Array.from(className.querySelectorAll('.popup__input'));
+
   errorList.forEach(errorElement => {
     errorElement.classList.remove('popup__input-error_visible');
   });
