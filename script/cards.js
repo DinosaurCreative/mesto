@@ -1,4 +1,4 @@
-const initialCards = [
+export const initialCards = [
   {
     name: 'Эльбрус',
     link: './images/Джомолунгма.jpg'
@@ -24,5 +24,3 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
   },
 ];
-
-export {initialCards}

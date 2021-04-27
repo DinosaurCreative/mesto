@@ -11,9 +11,8 @@ const createDataObjectFromImgPopup = (name, link) => {
   return newPic;
 };
 
-const clearImageInputPopup = () => {
-  inputCityTitle.value = '';
-  inputlink.value = '';
+const clearImageInputPopup = form => {
+  form.reset();
 };
 
 const handleClosePopupWithEscBtn = evt => {
@@ -112,7 +111,7 @@ inputFormEditor.addEventListener('submit', evt => {
 });
 
 addButton.addEventListener('click', () => {
-  clearImageInputPopup();
+  clearImageInputPopup(submitChangesImageHandler);
   resetInputError(popupImage);
   showPopup(popupImage);
   buttonElement.disabled = true;
