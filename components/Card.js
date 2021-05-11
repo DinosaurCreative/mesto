@@ -1,4 +1,4 @@
-export class Card {
+export default class Card {
   constructor(data, showPopup, hidePopup, templateSelector) {
     this._data = data;
 
