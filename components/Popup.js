@@ -11,13 +11,21 @@ class Popup {
       
   }
 
-  _handleEscClose(evt) {
-    if (evt.key === 'Escape') {
-      this.close();
-    };
+  _handleEscClose() {
+    document.setEventListeners('keydown', evt => {
+      if(evt.key === 'Escape') {
+        this.close();
+      };
+    })
   }
 
   setEventListeners() {
-    document.querySelector('popup__cross').setEventListeners('click', this.close())
+    document.setEventListeners('click', evt => {
+      if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__cross')) {
+    const openedPopup = document.querySelector('.popup_opened');
+    hidePopup(openedPopup);
+  };
+    });
+    this._handleEscClose();
   }
 }

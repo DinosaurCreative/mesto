@@ -1,18 +1,15 @@
+import Popup from './Popup.js';
+
 class PopupWithImage extends Popup {
-  constructor(selector, submitForm) {
-    this._selector = selector;
-    this._submitForm = submitForm;
+  constructor(popupSelector) {
+    super(popupSelector);
   }
-  _getInputValues() {
-
+ 
+  open() {
+    super.open();
+    super.setEventListeners();
+    super._popup.querySelector('.popup__image').src = evt.target.src;git commi
+    super._popup.querySelector('.popup__image').alt = evt.target.alt;
+    super._popup.querySelector('.popup__image-title').innerHTML = evt.target.alt;
   }
-  
-  setEventListeners() {
-    super._setEventListeners();
-
-  }
-  close() {
-    
-  }
-
 } 
