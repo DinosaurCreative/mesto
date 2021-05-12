@@ -5,11 +5,13 @@ class PopupWithImage extends Popup {
     super(popupSelector);
   }
  
-  open() {
+  open(data) {
     super.open();
     super.setEventListeners();
-    super._popup.querySelector('.popup__image').src = evt.target.src;git commi
-    super._popup.querySelector('.popup__image').alt = evt.target.alt;
-    super._popup.querySelector('.popup__image-title').innerHTML = evt.target.alt;
+    
+    super._popup.querySelector('.popup__image').src = data.link;
+    super._popup.querySelector('.popup__image').alt = datra.name;
+    super._popup.querySelector('.popup__image-title').innerHTML = datra.name;
   }
-} 
+}
+

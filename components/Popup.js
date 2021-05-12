@@ -22,10 +22,9 @@ class Popup {
   setEventListeners() {
     document.setEventListeners('click', evt => {
       if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__cross')) {
-    const openedPopup = document.querySelector('.popup_opened');
-    hidePopup(openedPopup);
-  };
+        this.close();
+      };
+      this._handleEscClose();
     });
-    this._handleEscClose();
   }
 }
