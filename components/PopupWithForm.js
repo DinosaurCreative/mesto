@@ -7,27 +7,24 @@ class PopupWithForm extends Popup {
   }
 
   _getInputValues() {
-    this._inputList = super._popup.querySelectorAll('.popup__input');
-
-    this._formValues = {};
-
-    this._inputList.forEach(input => {
-      this._formValues[input.name] = input.value;
-    });
-    
-    return this._formValues
+    const formValues =  Array.from(document.querySelector(super._popup).querySelectorAll('.popup__input'));
+  
+    return formValues
   }
   
+  _close() {
+    super.close();
+    
+  }
+
   setEventListeners() {
+    super.open();
     super.setEventListeners();
     document.addEventListener('submit', evt => {
       evt.preventDefault();
+      const formValues = this._getInputValues();
+      this._formSubmit(formValues);
       this._close();
-    })
-  }
-
-  _close() {
-    super.close();
-    document.querySelector('.popup__form_type_image').reset();
+    });
   }
 }

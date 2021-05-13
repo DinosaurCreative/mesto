@@ -1,5 +1,6 @@
 import { initialCards } from '../utils/cards.js';
 import { gridList } from '../utils/constants.js';
+import { } from '../utils/constants.js';
 
 
 const gridCard = new Section({
@@ -10,20 +11,6 @@ const gridCard = new Section({
     gridItem.addItem(cardElement);
   }, gridList
 });
-
-
-// const imageViewerPopup = new Section({
-//   data:/* собрать инфу от клика*/,
-//   renderer(item) {
-//     const popup = new PopupWithImage(popup_type_viewer);
-//     const imagePopup = popup.open();
-//     imageViewerPopup.addItem(imagePopup);
-//   }
-// })
-
-const infoEditorPopup = new Section({
-  
-})
 
 const imageAdderPopup = new Section({
 
@@ -36,11 +23,32 @@ const openPopupViewer = () => {
       const imageViewerPopup = new Section({
         data: [{name: evt.target.alt, link: evt.target.src}],
         renderer(item) {
-          const popup = new PopupWithImage(popup_type_viewer);
+          const popup = new PopupWithImage(popupViewer);
           const imagePopup = popup.open(item);
-          imageViewerPopup.addItem(imagePopup);
         }
-      })
+      }, popupViewer)
     }
   })
 }
+
+// Функция submit для попапов с данными пользователя
+
+const applyProfileInfoChanges = (data) => {
+  profileName.textContent = data.name;
+  profileOccupation.textContent = data.occupation;
+};
+
+// функция для попапа содания новой карточки
+const handleNewCardData (data) {
+
+}
+
+
+// Создание класса попапа с новой инфой.
+const infoEditorPopup = new Section({
+  data: [],
+  renderer() {
+    const PopupInfoForm = new PopupWithForm(popupInfoEdit, applyProfileInfoChanges/*Тут должна быть фнкция, которая добвляет новые данные пользователя вместо этой*/);
+    PopupInfoForm.setEventListeners();
+  }
+}, popupInfoEdit);

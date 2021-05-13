@@ -8,7 +8,7 @@ export default class Card {
   _getTemplate() {
     const cardElement = document.
     querySelector('#grid_item')
-    .content
+    .content  
     .querySelector('.grid__item')
     .cloneNode(true);
     
@@ -44,7 +44,7 @@ export default class Card {
 
   generateCard() {
     this._setEventListeners();
-
+    this._this._handleCardClick();
     return this._cardElement;
   }
 }

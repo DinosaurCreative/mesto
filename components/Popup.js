@@ -1,18 +1,17 @@
 class Popup {
   constructor(popupSelector) {
-    this._popup = document.querySelector(popupSelector);
+    this._popupSelector = popupSelector;
   }
   open() {
-    this._popup.classList.add('popup_opened');
+    document.querySelector(this._popupSelector).classList.add('popup_opened');
   }
 
   close() {
-    this._popup.classList.remove('popup_opened');
-      
+    document.querySelector(this._popupSelector).classList.remove('popup_opened');      
   }
 
   _handleEscClose() {
-    document.setEventListeners('keydown', evt => {
+    document.addtEventListeners('keydown', evt => {
       if(evt.key === 'Escape') {
         this.close();
       };
@@ -20,11 +19,11 @@ class Popup {
   }
 
   setEventListeners() {
-    document.setEventListeners('click', evt => {
+    this._handleEscClose();
+    document.addEventListeners('click', evt => {
       if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__cross')) {
         this.close();
       };
-      this._handleEscClose();
     });
   }
 }

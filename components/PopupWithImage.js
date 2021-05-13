@@ -1,4 +1,4 @@
-import Popup from './Popup.js';
+  import Popup from './Popup.js';
 
 class PopupWithImage extends Popup {
   constructor(popupSelector) {
@@ -6,12 +6,13 @@ class PopupWithImage extends Popup {
   }
  
   open(data) {
-    super.open();
     super.setEventListeners();
     
-    super._popup.querySelector('.popup__image').src = data.link;
-    super._popup.querySelector('.popup__image').alt = datra.name;
-    super._popup.querySelector('.popup__image-title').innerHTML = datra.name;
+    document.querySelector(super._popupSelector).querySelector('.popup__image').src = data.link;
+    document.querySelector(super._popupSelector).querySelector('.popup__image').alt = data.name;
+    document.querySelector(super._popupSelector).querySelector('.popup__image-title').innerHTML = data.name;
+    
+    super.open();
   }
 }
 
