@@ -1,4 +1,4 @@
-export class Card {
+export default class Card {
   constructor(data, showPopup, hidePopup, templateSelector) {
     this._data = data;
 
@@ -29,7 +29,7 @@ export class Card {
     const likeButton = this._cardElement.querySelector('.grid__like');
     const gridImage = this._cardElement.querySelector('.grid__image');
     const deleteButton = this._cardElement.querySelector('.grid__delete-btn');
-
+    
     likeButton.addEventListener('click', () => this._handleLikeButton());
     gridImage.addEventListener('click', () => this._handleOpenPreview());
     deleteButton.addEventListener('click', () => this._handleDeleteButton());
@@ -59,7 +59,6 @@ export class Card {
 
   generateCard() {
     this._setEventListeners();
-
     return this._cardElement;
   }
 }
