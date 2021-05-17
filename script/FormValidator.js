@@ -1,4 +1,4 @@
-export class FormValidator {
+  export class FormValidator {
   constructor(config) {
     this._config = config;
   };
@@ -39,7 +39,7 @@ export class FormValidator {
   _setInputListener = formElement => {
     const inputElements = Array.from(formElement.querySelectorAll(this._config.inputSelector));
     const buttonElement = formElement.querySelector(this._config.submitButtonSelector);
-    
+
     inputElements.forEach(inputElement => {
       inputElement.addEventListener('input', () => {
         this._validateInput(formElement, inputElement);
@@ -53,7 +53,7 @@ export class FormValidator {
 
   enableValidation = () => {
     const formList = Array.from(document.querySelectorAll(this._config.formSelector));
-    
+
     formList.forEach(formElement => {
       formElement.addEventListener('submit', this._preventDefaultSubmit);
       this._setInputListener(formElement);
