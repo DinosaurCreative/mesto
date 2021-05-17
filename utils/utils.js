@@ -34,7 +34,7 @@ export const handleClosePopupWithClick = evt => {
     hidePopup(openedPopup);
   };
 };
-
+////////////////////// эти оставить 
 export const activateButton = () => {
   profileEditorSubmitBtn.classList.remove('popup__save-btn_type_disabled');
   profileEditorSubmitBtn.disabled = false;
@@ -51,7 +51,7 @@ export const resetInputError = className => {
     inputElement.classList.remove('popup__input_type_error');
   });
 };
-
+/////////////////////////////////////
 export const setPopupEvtListener = (evtType, callback) => {
   document.addEventListener(evtType, callback);
 };

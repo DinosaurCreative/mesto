@@ -1,18 +1,21 @@
-class UserInfo {
-  constructor({selectors}) {
-    this._nameSelector = selectors.name;
-    this._occupationSelector = selectors.ocupation;
+import { profileOccupation } from "../utils/constants.js";
+import { profileName } from "../utils/constants.js";
+
+export default class UserInfo {
+  constructor({nameSelector, occupationSelector}) {
+    this._nameSelector = nameSelector;
+    this._occupationSelector = occupationSelector;
   }
-  getUserInfo(userData) {
+  getUserInfo() {
     const userInfo = {};
-    userInfo.name = userData.name;
-    userInfo.occupation = userData.occupation;
+    userInfo.name = document.querySelector(this._nameSelector).innerHTML;
+    userInfo.occupation = document.querySelector(this._occupationSelector).innerHTML;
 
     return userInfo;
   }
-
-  setUserInfo(userData){
-    document.querySelector(this._nameSelector).innerHTML = userData.name ;
-    document.querySelector(this._occupationSelector).innerHTML = userData.occupation;
+  
+  setUserInfo(userInfo) {
+    profileName.innerHTML = user[0].value;
+    profileOccupation.innerHTML = userInfo[1].value;
   }
 }
