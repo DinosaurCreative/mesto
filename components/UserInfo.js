@@ -8,14 +8,15 @@ export default class UserInfo {
   }
   getUserInfo() {
     const userInfo = {};
-    userInfo.name = document.querySelector(this._nameSelector).innerHTML;
-    userInfo.occupation = document.querySelector(this._occupationSelector).innerHTML;
 
+    userInfo.name = this._nameSelector.textContent;
+    userInfo.occupation = this._occupationSelector.innerHTML;
+    
     return userInfo;
   }
   
   setUserInfo(userInfo) {
-    profileName.innerHTML = user[0].value;
+    profileName.innerHTML = userInfo[0].value;
     profileOccupation.innerHTML = userInfo[1].value;
   }
 }

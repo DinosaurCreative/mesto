@@ -1,97 +1,103 @@
 import {
   addButton,
-  // popupImage,
-  // submitChangesImageHandler,
-  // inputCityTitle,
-  // inputlink,
-  // config,
+  buttonElement,
+  popupImage,
+  submitChangesImageHandler,
+  inputCityTitle,
+  inputlink,
+  inputFormEditor,
+  profileName,
+  profileOccupation,
+  config,
   editButton,
   popupInfoEdit,
-  gridList
+  gridList,
+  inputName,
+  inputOccupation,
+  popupViewer
 } from '../utils/constants.js'
-
 import { activateButton, resetInputError } from '../utils/utils.js';
-// import  FormValidator  from '../components/FormValidator.js';
+import  FormValidator  from '../components/FormValidator.js';
 import { initialCards } from '../utils/cards.js';
-
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import Section from '../components/Section.js';
-// import UserInfo from '../components/UserInfo.js';
+import UserInfo from '../components/UserInfo.js';
 import Card from '../components/testCard.js';
 
-// const formValidation = new FormValidator(config);
-// formValidation.enableValidation();
+
+//создаю экземпляр класса FormValidator
+const formValidation = new FormValidator(config);
+
+//включаю валидалку
+formValidation.enableValidation();
 
 // Функция-колбек для класса Card, добавляет слушатель клика на gridImage для открытия превью  (перенести в utils по завершению)  сделал новый варик
-
-const handleCardClick = () => {
+const cardHandlerClick = () => {
   document.addEventListener('click', evt => {
     if (evt.target.classList.contains('grid__image')) {
-      const imagePopup = new PopupWithImage('popup_type_viewer');
-      // imagePopup.open({name: evt.target.alt, link: evt.target.src});
+      const imagePopup = new PopupWithImage(popupViewer);
+      imagePopup.open({ name: evt.target.alt, link: evt.target.src });
     }
   }
 )}
 
-const newCard = item => new Card(item, handleCardClick);
-
-const userInfoPopup = new PopupWithForm(popupInfoEdit, );
-
 // функция содания новой карточки, куда упакован класс создания новой карточки. Вызывается при обработке массиива и клика по сабмит попапа добавления карты.
-
 const gridCard = new Section({
   items: initialCards,
-  renderer: item => {
-    const card = newCard(item);
-    const cardElement = card.generateCard();
-    gridCard.addItem(cardElement);
-  }
+  renderer: data => {
+    const card = new Card(data, cardHandlerClick);
+    return card.generateCard();
+  } 
 }, gridList);
 
 gridCard.renderItems();
 
+// // Создание экземпляра класса UserInfo  
+const newUserInfoClass = new UserInfo({ nameSelector: profileName, occupationSelector: profileOccupation });
 
+// Создание экземляра попапа редактирования инфы профиля
+const infoPopup = new PopupWithForm( popupInfoEdit, newUserInfoClass.setUserInfo);
 
-
-// // Слушатель события сабмит в попапе добавления нового изображения в Грид, добавляет новое изображение в сетку. 
-// submitChangesImageHandler.addEventListener('submit', evt => {
-//   evt.preventDefault();
-//   newCardAdder({name: inputCityTitle.value, link: inputlink.value});
-// })
-
-
-/// Слушатель клика по фото, открывающее превью
-document.addEventListener('click', evt => {
-  if (evt.target.classList.contains('grid__image')) {
-    const imagePopup = new PopupWithImage('popup_type_viewer');
-    imagePopup.open({ name: evt.target.alt, link: evt.target.src });
-  }
+//Вешаю слушатель сабмита на попап редактирования инфы профиля
+inputFormEditor.addEventListener('submit', evt => {
+  evt.preventDefault();
+  infoPopup.submitChanges();
+  infoPopup.close();
 })
 
-// // Создание экземпляра класса UserInfo  
-// const newUserInfoClass = new UserInfo({ nameSelector: 'profile__name', occupationSelector: 'profile__occupation' });
-
-
-
-// // слушатель клика по кнопке открытия попапа редактирования инфы, выводящий
+// слушатель клика по кнопке открытия попапа редактирования инфы, выводящий
 editButton.addEventListener('click', () => {
-  activateButton();
   resetInputError(popupInfoEdit);
-  const currentUserInfo = newUserInfoClass.getUserInfo();/// получаем текущие данны для вставления в инпут и укладывваем их в обект
-  const infoPopup = new PopupWithForm(popupInfoEdit, newUserInfoClass.setUserInfo(newUserInfo)); //Создаем попап с формой
+  activateButton();
+  const currentUserInfo = newUserInfoClass.getUserInfo();
   inputName.value = currentUserInfo.name;
   inputOccupation.value = currentUserInfo.occupation;
-  infoPopup.setEventListeners();
+  infoPopup.setEventListeners();  
 })
 
+//Колбек сабмита формы для попапа добавления фото
+const cardformSubmitHandler = () => {
+  const card = new Card({name: inputCityTitle.value,link: inputlink.value},cardHandlerClick)
+  gridCard.addItem(card.generateCard());
+  imagePopup.close()
 
+}
 
-// //Слшатель события нажатия кнопки открытия попапа добаления нового фото в грид
+// Объявляю новый экземпляр класса для  ПОПАП ИМЕДЖб в аргшументах метод 
+const imagePopup = new PopupWithForm(popupImage);
 
-// addButton.addEventListener('click', () => {
-//   resetInputError(popupImage);
-//   const imageFormPopup = new PopupWithForm(popupImage, newCardAdder(card));
-// })
+//Слшатель события нажатия кнопки открытия попапа добаления нового фото в грид
+addButton.addEventListener('click', () => {
+  buttonElement.disabled = true;
+  buttonElement.classList.add('popup__save-btn_type_disabled');
+  resetInputError(popupImage);
+  imagePopup.setEventListeners();
+})
 
-// // слушатель сабмита формы изменения  информации пользователя
+// Вешаю слушатель сабмита на кнопку добавления нового фото
+submitChangesImageHandler.addEventListener('submit', evt => {
+  evt.preventDefault();
+  cardformSubmitHandler();
+  imagePopup.close()
+})

@@ -4,11 +4,11 @@ export default class Popup {
   }
 
   open() { 
-    document.querySelector(`.${this._popupSelector}`).classList.add('popup_opened');
+    this._popupSelector.classList.add('popup_opened');
   }
 
   close() {
-    document.querySelector(`.${this._popupSelector}`).classList.remove('popup_opened');      
+    this._popupSelector.classList.remove('popup_opened');
   }
 
   _handleEscClose() {
