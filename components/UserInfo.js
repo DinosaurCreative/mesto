@@ -1,7 +1,7 @@
 import { profileOccupation } from "../utils/constants.js";
 import { profileName } from "../utils/constants.js";
 
-export default class UserInfo {
+export class UserInfo {
   constructor({nameSelector, occupationSelector}) {
     this._nameSelector = nameSelector;
     this._occupationSelector = occupationSelector;

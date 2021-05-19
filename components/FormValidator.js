@@ -1,6 +1,7 @@
-export default class FormValidator {
-  constructor(config) {
+export class FormValidator {
+  constructor(config, formSelector) {
     this._config = config;
+    this._formSelector = formSelector;
   };
 
   _hideInputError = (errorElement, inputElement) => {
@@ -15,8 +16,8 @@ export default class FormValidator {
     inputElement.classList.add(this._config.inputErrorClass);
   };
 
-  _validateInput = (formElement, inputElement) => {
-    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  _validateInput = (formSelector, inputElement) => {
+    const errorElement = formSelector.querySelector(`.${inputElement.id}-error`);
     if (inputElement.validity.valid) {
       this._hideInputError(errorElement, inputElement);
     } else {
@@ -36,27 +37,19 @@ export default class FormValidator {
     };
   };
 
-  _setInputListener = formElement => {
-    const inputElements = Array.from(formElement.querySelectorAll(this._config.inputSelector));
-    const buttonElement = formElement.querySelector(this._config.submitButtonSelector);
+  _preventDefaultSubmit = evt => evt.preventDefault();
+ 
+  enableValidation = () => {
+    const inputElements = Array.from(this._formSelector.querySelectorAll(this._config.inputSelector));
+    const buttonElement = this._formSelector.querySelector(this._config.submitButtonSelector);
 
     inputElements.forEach(inputElement => {
       inputElement.addEventListener('input', () => {
-        this._validateInput(formElement, inputElement);
+        this._validateInput(this._formSelector, inputElement);
         this._toggleButtonState(buttonElement, inputElements);
       });
     });
-  };
 
-  _preventDefaultSubmit = evt => evt.preventDefault();
-
-
-  enableValidation = () => {
-    const formList = Array.from(document.querySelectorAll(this._config.formSelector));
-
-    formList.forEach(formElement => {
-      formElement.addEventListener('submit', this._preventDefaultSubmit);
-      this._setInputListener(formElement);
-    });
+    this._formSelector.addEventListener('submit', this._preventDefaultSubmit);
   };
 }
