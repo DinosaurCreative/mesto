@@ -24,7 +24,7 @@ import { PopupWithForm} from '../components/PopupWithForm.js';
 import { Section} from '../components/Section.js';
 import { UserInfo} from '../components/UserInfo.js';
 import { Card } from '../components/Card.js';
-// import '../styles/index.css';
+import '../styles/index.css';
 
 const infoPopupFormValidation = new FormValidator(config, inputFormEditor);
 const imageAdderPopupFormValidation = new FormValidator(config, submitChangesImageHandler);
@@ -97,12 +97,3 @@ infoPopupFormValidation.enableValidation();
 infoPopup.setEventListeners();
 imagePopup.setEventListeners();
 imageViewerPopup.setEventListeners();
-console.log(1);
-console.log(2);
-
-const numbers = [2, 3, 5];
-
-// Стрелочная функция. Не запнётся ли на ней Internet Explorer?
-const doubledNumbers = numbers.map(number => number * 2);
-
-console.log(doubledNumbers); // 4, 6, 10 
