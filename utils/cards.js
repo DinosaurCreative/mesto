@@ -1,22 +1,34 @@
+const elbrus = new URL('./images/Джомолунгма.jpg', import.meta.url);
+const saintPitersburg = new URL('./images/Амстердам.jpg', import.meta.url);
+const apatity = new URL('./images/Апатиты.jpg', import.meta.url);
+const camchatka = new URL('./images/Камчатка.jpg', import.meta.url);
+const village = new URL('../images/Деревня.jpg', import.meta.url);
+
+
 export const initialCards = [{
     name: 'Эльбрус',
-    link: './images/Джомолунгма.jpg'
+    link: elbrus
+    // link: './images/Джомолунгма.jpg'
   },
   {
     name: 'Санкт-Петербург',
-    link: './images/Амстердам.jpg'
+    link: saintPitersburg
+    // link: './images/Амстердам.jpg'
   },
   {
     name: 'Апатиты',
-    link: './images/Апатиты.jpg'
+    link: apatity
+    // link: './images/Апатиты.jpg'
   },
   {
     name: 'Камчатка',
-    link: './images/Камчатка.jpg'
+    link: camchatka
+    // link: './images/Камчатка.jpg'
   },
   {
     name: 'Деревня',
-    link: './images/Деревня.jpg'
+    link: village
+    // link: '../images/Деревня.jpg'
   },
   {
     name: 'Холмогорский район',
