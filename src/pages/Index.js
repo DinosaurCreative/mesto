@@ -38,8 +38,8 @@ const gridCard = new Section({
   }
 }, gridList);
 const newUserInfoClass = new UserInfo({
-  nameSelector: '.profile__name',
-  occupationSelector: '.profile__occupation'
+  nameSelector: profileName,
+  occupationSelector: profileOccupation
 });
 const infoPopup = new PopupWithForm(popupInfoEdit, newUserInfoClass.setUserInfo);
 

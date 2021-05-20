@@ -38,7 +38,7 @@ export class FormValidator {
   };
 
   _preventDefaultSubmit = evt => evt.preventDefault();
- 
+
   enableValidation = () => {
     const inputElements = Array.from(this._formSelector.querySelectorAll(this._config.inputSelector));
     const buttonElement = this._formSelector.querySelector(this._config.submitButtonSelector);

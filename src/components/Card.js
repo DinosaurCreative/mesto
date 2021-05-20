@@ -9,9 +9,9 @@ export class Card {
   _getTemplate() {
     const cardElement = document.
     querySelector('#grid_item')
-    .content
-    .querySelector('.grid__item')
-    .cloneNode(true);
+      .content
+      .querySelector('.grid__item')
+      .cloneNode(true);
 
     return cardElement;
   }
@@ -25,7 +25,7 @@ export class Card {
   _handleLikeButton() {
     this._cardElement.querySelector('.grid__like').classList.toggle('grid__like_type_dark')
   }
-  
+
   _handleDeleteButton() {
     this._cardElement.remove();
   }
