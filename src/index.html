@@ -34,9 +34,9 @@
     <div class="popup__container">
       <h3 class="popup__title">Редактировать профиль</h3>
       <form class="popup__form popup__form_type_editor" name="popup-form" novalidate>
-        <input type="text" placeholder="Имя" id="popup-name" class="popup__input popup__input_type_name" minlength="2" maxlength="40" required>
+        <input type="text" placeholder="Имя" name= "name" id="popup-name" class="popup__input popup__input_type_name" minlength="2" maxlength="40" required>
         <span class="popup__input-error popup-name-error"></span>
-        <input type="text" placeholder="Професиия" id="popup-occupation" class="popup__input popup__input_type_occupation" minlength="2" maxlength="200" required>
+        <input type="text" placeholder="Професиия" name="occupation" id="popup-occupation" class="popup__input popup__input_type_occupation" minlength="2" maxlength="200" required>
         <span class="popup__input-error popup-occupation-error"></span>
         <input class="popup__save-btn" value="Сохранить" type="submit">
       </form>
@@ -47,9 +47,9 @@
     <div class="popup__container">
       <h3 class="popup__title">Новое место</h3>
       <form class="popup__form popup__form_type_image" name="popup-form" novalidate>
-        <input type="text" placeholder="Название" id="popup-title" class="popup__input popup__input_type_image-title" minlength="2" maxlength="30" required>
+        <input type="text" placeholder="Название" name="name" id="popup-title" class="popup__input popup__input_type_image-title" minlength="2" maxlength="30" required>
         <span class="popup__input-error popup-title-error"></span>
-        <input type="url" placeholder="Ссылка на картинку" id="popup-link" class="popup__input popup__input_type_image-link" required>
+        <input type="url" placeholder="Ссылка на картинку" name="link" id="popup-link" class="popup__input popup__input_type_image-link" required>
         <span class="popup__input-error popup-link-error"></span>
         <input class="popup__save-btn popup__save-btn_type_image" value="Создать" type="submit">
       </form>
