@@ -21,6 +21,7 @@ export class Popup {
   }
 
   setEventListeners() {
+    console.log(1);
     this._handleEscClose();
     document.addEventListener('click', evt => {
       if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__cross')) {
