@@ -35,5 +35,3 @@
 **ссылка на проект**
 
 [Mesto](https://dinosaurcreative.github.io/mesto/)
-
-
