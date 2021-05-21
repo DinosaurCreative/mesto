@@ -3,7 +3,7 @@ export class FormValidator {
     this._config = config;
     this._formSelector = formSelector;
     this._inputElements = Array.from(this._formSelector.querySelectorAll(this._config.inputSelector));
-    this._buttonElements = formSelector.querySelector(this._config.submitButtonSelector);
+    this._buttonElement = this._formSelector.querySelector(this._config.submitButtonSelector);
   };
 
   _hideInputError = (errorElement, inputElement) => {
@@ -42,11 +42,13 @@ export class FormValidator {
   _preventDefaultSubmit = evt => evt.preventDefault();
 
   enableValidation = () => {
+    const inputElements = Array.from(this._formSelector.querySelectorAll(this._config.inputSelector));
+    const buttonElement = this._formSelector.querySelector(this._config.submitButtonSelector);
 
     this._inputElements.forEach(inputElement => {
       inputElement.addEventListener('input', () => {
         this._validateInput(this._formSelector, inputElement);
-        this._toggleButtonState(this._buttonElement, inputElements);
+        this._toggleButtonState(this._buttonElement, this._inputElements);
       });
     });
 
