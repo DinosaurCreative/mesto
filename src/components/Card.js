@@ -28,18 +28,18 @@ export class Card {
 
   _handleDeleteButton() {
     this._cardElement.remove();
+    this._cardElement = null;
   }
 
   _setEventListeners() {
     this._cardElement.querySelector('.grid__like').addEventListener('click', () => this._handleLikeButton());
-    this._cardElement.querySelector('.grid__image').addEventListener('click', () => this._handleCardClick());
+    this._cardElement.querySelector('.grid__image').addEventListener('click', () => this._handleCardClick(this._name, this._link));
     this._cardElement.querySelector('.grid__delete-btn').addEventListener('click', () => this._handleDeleteButton());
   }
 
   generateCard() {
     this._setUserInfoToCard();
     this._setEventListeners();
-    this._handleCardClick();
     return this._cardElement;
   }
 }
