@@ -33,7 +33,7 @@ const imageViewerPopup = new PopupWithImage(popupViewer);
 const gridCard = new Section({
   items: initialCards,
   renderer: data => {
-    const card = new Card(data, cardHandlerClick);
+    const card = new Card(data, cardHandlerClick, "#grid_item");
     return card.generateCard();
   }
 }, gridList);
@@ -58,7 +58,7 @@ const cardformSubmitHandler = () => {
   const card = new Card({
     name: inputCityTitle.value,
     link: inputlink.value
-  }, cardHandlerClick)
+  }, cardHandlerClick,'#grid_item')
   gridCard.addItem(card.generateCard());
   imagePopup.close()
 }
