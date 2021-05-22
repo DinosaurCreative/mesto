@@ -58,14 +58,10 @@ const infoPopup = new PopupWithForm(popupInfoEdit, ()=> {
 });
 
 const cardHandlerClick = (name, link) => {
-  document.addEventListener('click', evt => {
-    if (evt.target.classList.contains('grid__image')) {
-      imageViewerPopup.open({
-        name: name,
-        link: link
-      });
-    }
-  })
+  imageViewerPopup.open({
+    name: name,
+    link: link
+  });
 }
 
 editButton.addEventListener('click', () => {
