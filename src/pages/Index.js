@@ -14,8 +14,6 @@ import {
   inputOccupation,
 } from '../utils/constants.js'
 import { popupViewer } from '../utils/constants.js';
-import { inputlink } from '../utils/constants.js';
-import { inputCityTitle } from '../utils/constants.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { activateButton, resetInputError } from '../utils/utils.js';
 import { FormValidator } from '../components/FormValidator.js';
@@ -41,12 +39,12 @@ const imagePopup = new PopupWithForm(popupImage, items => {
 })
 
 const gridCard = new Section({
-  items: initialCards,
   renderer: data => {
     const card = createCard(data);
     gridCard.addItem(card.generateCard());
   }
 }, gridList);
+
 
 const infoPopupFormValidation = new FormValidator(config, inputFormEditor);
 const imageAdderPopupFormValidation = new FormValidator(config, submitChangesImageHandler);
@@ -58,6 +56,7 @@ const newUserInfoClass = new UserInfo({
 const infoPopup = new PopupWithForm(popupInfoEdit, ()=> {
   newUserInfoClass.setUserInfo(infoPopup._getInputValues())
 });
+
 const cardHandlerClick = (name, link) => {
   document.addEventListener('click', evt => {
     if (evt.target.classList.contains('grid__image')) {
@@ -85,7 +84,7 @@ addButton.addEventListener('click', () => {
   imagePopup.open();
 })
 
-gridCard.renderItems();
+gridCard.renderItems(initialCards);
 imageAdderPopupFormValidation.enableValidation();
 infoPopupFormValidation.enableValidation();
 infoPopup.setEventListeners();
