@@ -21,7 +21,7 @@ import { PopupWithForm} from '../components/PopupWithForm.js';
 import { Section} from '../components/Section.js';
 import { UserInfo} from '../components/UserInfo.js';
 import { Card } from '../components/Card.js';
-import '../styles/index.css';
+import '../pages/index.css';
 
 const createCard = items => {
   const card = new Card({
