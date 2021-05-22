@@ -15,7 +15,6 @@ import {
 } from '../utils/constants.js'
 import { popupViewer } from '../utils/constants.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
-import { activateButton, resetInputError } from '../utils/utils.js';
 import { FormValidator } from '../components/FormValidator.js';
 import { initialCards } from '../utils/cards.js';
 import { PopupWithForm} from '../components/PopupWithForm.js';
@@ -65,8 +64,8 @@ const cardHandlerClick = (name, link) => {
 }
 
 editButton.addEventListener('click', () => {
-  resetInputError(popupInfoEdit);
-  activateButton();
+  infoPopupFormValidation.resetInputError(popupInfoEdit)
+  imageAdderPopupFormValidation.activateButton(editButton);
   const currentUserInfo = newUserInfoClass.getUserInfo();
   inputName.value = currentUserInfo.name;
   inputOccupation.value = currentUserInfo.occupation;
@@ -76,7 +75,7 @@ editButton.addEventListener('click', () => {
 addButton.addEventListener('click', () => {
   buttonElement.disabled = true;
   buttonElement.classList.add('popup__save-btn_type_disabled');
-  resetInputError(popupImage);
+  infoPopupFormValidation.resetInputError(popupImage)
   imagePopup.open();
 })
 
