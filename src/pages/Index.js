@@ -73,8 +73,7 @@ editButton.addEventListener('click', () => {
 })
 
 addButton.addEventListener('click', () => {
-  buttonElement.disabled = true;
-  buttonElement.classList.add('popup__save-btn_type_disabled');
+  imageAdderPopupFormValidation.disactivateButton(buttonElement);
   infoPopupFormValidation.resetInputError(popupImage)
   imagePopup.open();
 })
