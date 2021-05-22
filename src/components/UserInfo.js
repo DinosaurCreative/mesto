@@ -5,13 +5,13 @@ export class UserInfo {
   }
   getUserInfo() {
     return {
-      name: this._nameSelector.innerHTML,
-      occupation: this._occupationSelector.innerHTML
+      name: this._nameSelector.textContent,
+      occupation: this._occupationSelector.textContent
     }
   }
   
   setUserInfo = (userInfo) => {
-    this._nameSelector.textContent= userInfo.name;
+    this._nameSelector.textContent = userInfo.name;
     this._occupationSelector.textContent = userInfo.occupation;
   }
 }
