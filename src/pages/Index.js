@@ -26,23 +26,38 @@ import { UserInfo} from '../components/UserInfo.js';
 import { Card } from '../components/Card.js';
 import '../styles/index.css';
 
-const infoPopupFormValidation = new FormValidator(config, inputFormEditor);
-const imageAdderPopupFormValidation = new FormValidator(config, submitChangesImageHandler);
-const imagePopup = new PopupWithForm(popupImage);
-const imageViewerPopup = new PopupWithImage(popupViewer);
+const createCard = items => {
+  const card = new Card({
+    name: items.name,
+    link: items.link
+  }, cardHandlerClick,'#grid_item')
+  return card;
+}
+
+const imagePopup = new PopupWithForm(popupImage, items => {
+    const card = createCard(items);
+    gridCard.addItem(card.generateCard());
+    imagePopup.close();
+})
+
 const gridCard = new Section({
   items: initialCards,
   renderer: data => {
-    const card = new Card(data, cardHandlerClick, "#grid_item");
-    return card.generateCard();
+    const card = createCard(data);
+    gridCard.addItem(card.generateCard());
   }
 }, gridList);
+
+const infoPopupFormValidation = new FormValidator(config, inputFormEditor);
+const imageAdderPopupFormValidation = new FormValidator(config, submitChangesImageHandler);
+const imageViewerPopup = new PopupWithImage(popupViewer);
 const newUserInfoClass = new UserInfo({
   nameSelector: profileName,
   occupationSelector: profileOccupation
 });
-const infoPopup = new PopupWithForm(popupInfoEdit, newUserInfoClass.setUserInfo);
-
+const infoPopup = new PopupWithForm(popupInfoEdit, ()=> {
+  newUserInfoClass.setUserInfo(infoPopup._getInputValues())
+});
 const cardHandlerClick = (name, link) => {
   document.addEventListener('click', evt => {
     if (evt.target.classList.contains('grid__image')) {
@@ -53,21 +68,6 @@ const cardHandlerClick = (name, link) => {
     }
   })
 }
-
-const cardformSubmitHandler = () => {
-  const card = new Card({
-    name: inputCityTitle.value,
-    link: inputlink.value
-  }, cardHandlerClick,'#grid_item')
-  gridCard.addItem(card.generateCard());
-  imagePopup.close()
-}
-
-inputFormEditor.addEventListener('submit', evt => {
-  evt.preventDefault();
-  infoPopup.submitChanges();
-  infoPopup.close();
-})
 
 editButton.addEventListener('click', () => {
   resetInputError(popupInfoEdit);
@@ -83,12 +83,6 @@ addButton.addEventListener('click', () => {
   buttonElement.classList.add('popup__save-btn_type_disabled');
   resetInputError(popupImage);
   imagePopup.open();
-})
-
-submitChangesImageHandler.addEventListener('submit', evt => {
-  evt.preventDefault();
-  cardformSubmitHandler();
-  imagePopup.close()
 })
 
 gridCard.renderItems();

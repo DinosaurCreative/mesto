@@ -11,7 +11,7 @@ export class UserInfo {
   }
   
   setUserInfo = (userInfo) => {
-    this._nameSelector.innerHTML = userInfo.name;
-    this._occupationSelector.innerHTML = userInfo.occupation;
+    this._nameSelector.textContent= userInfo.name;
+    this._occupationSelector.textContent = userInfo.occupation;
   }
 }
