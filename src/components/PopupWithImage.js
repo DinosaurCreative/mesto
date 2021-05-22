@@ -5,12 +5,14 @@ import {
 export class PopupWithImage extends Popup {
   constructor(popupSelector) {
     super(popupSelector);
+    this._image = this._popupSelector.querySelector('.popup__image');;
+    this._title = this._popupSelector.querySelector('.popup__image-title');
   }
 
   open(data) {
-    this._popupSelector.querySelector('.popup__image').src = data.link;
-    this._popupSelector.querySelector('.popup__image').alt = data.name;
-    this._popupSelector.querySelector('.popup__image-title').innerHTML = data.name;
+    this._image.src = data.link;
+    this._image.alt = data.name;
+    this._title.textContent = data.name;
     super.open()
   }
 }
