@@ -42,6 +42,8 @@
 @import url(../blocks/profile/__edit-button/profile__edit-button.css);
 @import url(../blocks/profile/__add-button/profile__add-button.css);
 @import url(../blocks/profile/__info-container/profile__info-container.css);
+@import url(../blocks/profile/__edit/profile__edit.css);
+
 
 
 @import url(../blocks/grid/grid.css);

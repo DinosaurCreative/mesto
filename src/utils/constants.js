@@ -26,3 +26,7 @@ export const config = {
   errorClass: 'popup__input-error_visible',
   errorSpan: '.popup__input-error'
 };
+// Территория эксперементов
+export const popupDeletePic = page.querySelector('.popup_type_delete-confirm');  // Popup подтверждения удаления фото
+export const popupAvatarEdit = page.querySelector('.popup_type_avatar'); // Попап добавления аватарки
+
