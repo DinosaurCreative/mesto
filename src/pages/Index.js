@@ -47,8 +47,6 @@ const api = new Api({
 
 
 
-console.log(Promise);
-
 // Создание экземпляра класса аватара
 // const popupAvatrEdit = new PopupWithForm(popupAvatarEdit, ()=> {
 
