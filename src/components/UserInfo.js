@@ -1,7 +1,8 @@
 export class UserInfo {
-  constructor({nameSelector, occupationSelector}) {
+  constructor({nameSelector, occupationSelector, avatarSelector}) {
     this._nameSelector = nameSelector;
     this._occupationSelector = occupationSelector;
+    this._avatarSelector = avatarSelector;
   }
   getUserInfo() {
     return {
@@ -10,8 +11,14 @@ export class UserInfo {
     }
   }
   
-  setUserInfo = (userInfo) => {
-    this._nameSelector.textContent = userInfo.name;
-    this._occupationSelector.textContent = userInfo.occupation;
+  setUserInfo = (data) => {
+    this._nameSelector.textContent = data.name;
+    this._occupationSelector.textContent = data.about;
+    this._avatarSelector.style.backgroundImage = `url(${data.avatar})`;
+  }
+
+  setNewAvatar(data) {
+    this._avatarSelector.style.backgroundImage = `url(${data})`;
+
   }
 }

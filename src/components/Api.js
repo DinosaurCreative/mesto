@@ -21,7 +21,6 @@ export  class Api {
         }
       })
       .then(res => this._checkServerResponse(res))
-      .catch(err=> console.log(`Ошибка: ${err}`))
     }
 
   getImages(){
@@ -32,8 +31,7 @@ export  class Api {
         'Content-Type': 'application/json' 
       }
     })
-    .then(res => res.json())
-    .catch(err => console.log(`Ошибка: ${err}`))
+    .then(res => this._checkServerResponse(res))
   }
 
 
@@ -50,7 +48,6 @@ export  class Api {
       })
     })
     .then(res => this._checkServerResponse(res))
-    .catch(err => console.log(`Ошибка: ${err}`))
   }
 
   postImage(data) {
@@ -61,12 +58,11 @@ export  class Api {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        imageLink: data.link,
-        imageTitle: data.title,
+        name: data.name,
+        link: data.link,
       })
     })
     .then(res => this._checkServerResponse(res))
-    .catch(err => console.log(`Ошибка: ${err}`))
   }
 
   deleteImage(id) {
@@ -82,18 +78,17 @@ export  class Api {
   }
 
   changeAvatar(link) {
-    fetch(`${this._address}user/me/avatar`, {
+    return fetch(`${this._address}users/me/avatar`, {
       method: 'PATCH',
       headers: {
         authorization: this._token,
         'Content-Type': 'application/json'
       },
-      body: {
+      body: JSON.stringify({
         avatar: link
-      }
+      })
     })
     .then(res => this._checkServerResponse(res))
-    .catch(err => console.log(`Ошибка: ${err}`))
   }
   
   increaseLike(id) {
@@ -105,7 +100,6 @@ export  class Api {
       }
     })
     .then(res => this._checkServerResponse(res))
-    .catch(err => console.log(`Ошибка: ${err}`))
   }
 
 
@@ -118,6 +112,5 @@ export  class Api {
       }
     })
     .then(res => this._checkServerResponse(res))
-    .catch(err => console.log(`Ошибка: ${err}`))
   }
 }

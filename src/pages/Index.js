@@ -25,9 +25,13 @@ import { Card } from '../components/Card.js';
 import '../pages/index.css';
 import { PopupWithConfirm } from '../components/PopupWithConfirm.js';
 import { Api } from '../components/Api.js';
-
-
-
+import { apiKeys } from '../utils/constants.js';
+import { avatar } from '../utils/constants.js';
+import { popupAvatarEdit } from '../utils/constants.js';
+import { avatarInput } from '../utils/constants.js';
+import { avatarForm } from '../utils/constants.js';
+import { avatarEditButton } from '../utils/constants.js';
+import { avatarPopupSubmitButton } from '../utils/constants.js';
 
 
 
@@ -39,22 +43,24 @@ const createCard = items => {
   return card;
 }
 
-// Создание экземпляра класса Api
-const api = new Api({
-  address: 'https://nomoreparties.co/v1/cohort-24/', 
-  token: '1b42587b-1212-49d2-8dac-fba90d326288'
+const api = new Api(apiKeys);
+
+const newUserInfo = new UserInfo({
+  nameSelector: profileName,
+  occupationSelector: profileOccupation,
+  avatarSelector: avatar
 });
 
 
+const popupAvatar = new PopupWithForm(popupAvatarEdit, item => {  
+    api.changeAvatar(item.link)
+      .then(res => {
+        newUserInfo.setNewAvatar(res.avatar);
+      })
+      .catch(err => console.log(`Ошибка: ${err}`))
+  })    
 
-// Создание экземпляра класса аватара
-// const popupAvatrEdit = new PopupWithForm(popupAvatarEdit, ()=> {
 
-// })
-
-// Создание экземпляа класса PopupWithConfirm
-
-// const popupWithConfirm = new PopupWithConfirm(popupDeletePic);
 
 
 const imagePopup = new PopupWithForm(popupImage, items => {
@@ -70,16 +76,26 @@ const gridCard = new Section({
   }
 }, gridList);
 
-
+const avatarPopupFormValidation = new FormValidator(config, avatarForm);
 const infoPopupFormValidation = new FormValidator(config, inputFormEditor);
 const imageAdderPopupFormValidation = new FormValidator(config, submitChangesImageHandler);
 const imageViewerPopup = new PopupWithImage(popupViewer);
-const newUserInfoClass = new UserInfo({
-  nameSelector: profileName,
-  occupationSelector: profileOccupation
-});
-const infoPopup = new PopupWithForm(popupInfoEdit, ()=> {
-  newUserInfoClass.setUserInfo(infoPopup._getInputValues())
+
+
+api.getProfileData()
+  .then((data) => {
+    newUserInfo.setUserInfo({
+      name: data.name,
+      about: data.about, 
+      avatar: data.avatar
+    })
+  })
+  .catch(err => console.log(`oshibka: ${err}`))
+
+
+
+const infoPopup = new PopupWithForm(popupInfoEdit, () => {
+  newUserInfo.setUserInfo(infoPopup._getInputValues())
 });
 
 const cardHandlerClick = (name, link) => {
@@ -89,10 +105,19 @@ const cardHandlerClick = (name, link) => {
   });
 }
 
+
+
+avatarEditButton.addEventListener('click', () => {
+  avatarPopupFormValidation.disactivateButton(avatarPopupSubmitButton);
+  avatarPopupFormValidation.resetInputError(avatarInput)
+  popupAvatar.open();
+});
+
+
 editButton.addEventListener('click', () => {
   infoPopupFormValidation.resetInputError(popupInfoEdit)
   imageAdderPopupFormValidation.activateButton(editButton);
-  const currentUserInfo = newUserInfoClass.getUserInfo();
+  const currentUserInfo = newUserInfo.getUserInfo();
   inputName.value = currentUserInfo.name;
   inputOccupation.value = currentUserInfo.occupation;
   infoPopup.open();
@@ -105,11 +130,10 @@ addButton.addEventListener('click', () => {
 })
 
 gridCard.renderItems(initialCards);
+avatarPopupFormValidation.enableValidation();
 imageAdderPopupFormValidation.enableValidation();
 infoPopupFormValidation.enableValidation();
 infoPopup.setEventListeners();
 imagePopup.setEventListeners();
 imageViewerPopup.setEventListeners();
-
-// Территория эксперементов
-// popupWithConfirm.setEventListeners();
+popupAvatar.setEventListeners();
