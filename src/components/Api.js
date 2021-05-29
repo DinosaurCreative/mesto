@@ -44,7 +44,7 @@ export  class Api {
       },
       body: JSON.stringify({
         name: data.name,
-        about: data.occupatiion
+        about: data.occupation
       })
     })
     .then(res => this._checkServerResponse(res))

@@ -36,14 +36,13 @@ import { avatarPopupSubmitButton } from '../utils/constants.js';
 
 
 const createCard = items => {
-  const card = new Card({
-    name: items.name,
-    link: items.link
-  }, cardHandlerClick,'#grid_item')
+  const card = new Card(
+    items , cardHandlerClick,'#grid_item', api)
   return card;
 }
 
 const api = new Api(apiKeys);
+
 
 const newUserInfo = new UserInfo({
   nameSelector: profileName,
@@ -57,21 +56,33 @@ const popupAvatar = new PopupWithForm(popupAvatarEdit, item => {
       .then(res => {
         newUserInfo.setNewAvatar(res.avatar);
       })
-      .catch(err => console.log(`Ошибка: ${err}`))
+      .catch(err => console.log(`Ошибка при добавлении нового аватара: ${err}`))
   })    
 
+// добавляем фичу загрузки пакак фоток с сервака
+
+api.getImages()
+  .then(res => {
+    gridCard.renderItems(res.reverse())
+  })
+  .catch(err => console.log(err));
 
 
-
+// добавляем возможность загрузать фото на сервак
 const imagePopup = new PopupWithForm(popupImage, items => {
-    const card = createCard(items);
-    gridCard.addItem(card.generateCard());
-    imagePopup.close();
+    api.postImage(items)
+      .then(res => {
+        const card = createCard(res);
+        gridCard.addItem(card.generateCard());
+        imagePopup.close();
+      })
+      .catch(err => console.log(err))
 })
 
 const gridCard = new Section({
   renderer: data => {
     const card = createCard(data);
+    // console.log(card._isLiked);
     gridCard.addItem(card.generateCard());
   }
 }, gridList);
@@ -87,8 +98,8 @@ api.getProfileData()
     newUserInfo.setUserInfo({
       name: data.name,
       about: data.about, 
-      avatar: data.avatar
     })
+    newUserInfo.setNewAvatar(data.avatar);
   })
   .catch(err => console.log(`oshibka: ${err}`))
 
@@ -129,7 +140,7 @@ addButton.addEventListener('click', () => {
   imagePopup.open();
 })
 
-gridCard.renderItems(initialCards);
+// gridCard.renderItems(initialCards);
 avatarPopupFormValidation.enableValidation();
 imageAdderPopupFormValidation.enableValidation();
 infoPopupFormValidation.enableValidation();

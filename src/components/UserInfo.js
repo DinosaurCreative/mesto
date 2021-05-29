@@ -14,7 +14,6 @@ export class UserInfo {
   setUserInfo = (data) => {
     this._nameSelector.textContent = data.name;
     this._occupationSelector.textContent = data.about;
-    this._avatarSelector.style.backgroundImage = `url(${data.avatar})`;
   }
 
   setNewAvatar(data) {
