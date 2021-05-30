@@ -12,12 +12,11 @@ import {
   inputName,
   inputOccupation,
   gridList,
-  popupDeletePic
+  popupDeletePic,
 } from '../utils/constants.js'
 import { popupViewer } from '../utils/constants.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { FormValidator } from '../components/FormValidator.js';
-import { initialCards } from '../utils/cards.js';
 import { PopupWithForm} from '../components/PopupWithForm.js';
 import { Section} from '../components/Section.js';
 import { UserInfo} from '../components/UserInfo.js';
@@ -34,10 +33,8 @@ import { avatarEditButton } from '../utils/constants.js';
 import { avatarPopupSubmitButton } from '../utils/constants.js';
 
 
-
 const createCard = items => {
-  const card = new Card(
-    items , cardHandlerClick,'#grid_item', api, "4d426ed11c4589547aeb84e9")
+  const card = new Card( items , cardHandlerClick,'#grid_item', api, "4d426ed11c4589547aeb84e9", confirmPopup);
   return card;
 }
 
@@ -50,33 +47,38 @@ const newUserInfo = new UserInfo({
   avatarSelector: avatar
 });
 
+const confirmPopup = new PopupWithConfirm(popupDeletePic, api);
 
 const popupAvatar = new PopupWithForm(popupAvatarEdit, item => {  
+  popupAvatar.showTextWhileSaving(true)
     api.changeAvatar(item.link)
       .then(res => {
         newUserInfo.setNewAvatar(res.avatar);
       })
       .catch(err => console.log(`Ошибка при добавлении нового аватара: ${err}`))
+      .finally(() => {
+        popupAvatar.showTextWhileSaving(false);
+      })
   })    
-
-// добавляем фичу загрузки пакак фоток с сервака
 
 api.getImages()
   .then(res => {
-    gridCard.renderItems(res.reverse())
+    gridCard.renderItems(res.reverse());
   })
   .catch(err => console.log(err));
 
-
-// добавляем возможность загрузать фото на сервак
 const imagePopup = new PopupWithForm(popupImage, items => {
-    api.postImage(items)
+  imagePopup.showTextWhileSaving(true)  ;
+  api.postImage(items)
       .then(res => {
         const card = createCard(res);
         gridCard.addItem(card.generateCard());
-        imagePopup.close();
       })
       .catch(err => console.log(err))
+      .finally(() => {
+        imagePopup.showTextWhileSaving(false);
+        imagePopup.close(); 
+      })
 })
 
 const gridCard = new Section({
@@ -100,17 +102,18 @@ api.getProfileData()
     })
     newUserInfo.setNewAvatar(data.avatar);
   })
-  .catch(err => console.log(`oshibka: ${err}`))
-
+  .catch(err => console.log(`Ошибка: ${err}`))
 
 
 const infoPopup = new PopupWithForm(popupInfoEdit, () => {
-  console.log(infoPopup._getInputValues());
+  infoPopup.showTextWhileSaving(true);
   api.setNewProfileData(infoPopup._getInputValues())
-    .then(res => console.log(res))
+    .then((res)=> res )
     .catch(err => console.log(err))
-
-  newUserInfo.setUserInfo(infoPopup._getInputValues())
+    .finally(() => {
+      infoPopup.showTextWhileSaving(false);
+    })
+  newUserInfo.setUserInfo(infoPopup._getInputValues());
 });
 
 const cardHandlerClick = (name, link) => {
@@ -120,17 +123,15 @@ const cardHandlerClick = (name, link) => {
   });
 }
 
-
-
 avatarEditButton.addEventListener('click', () => {
   avatarPopupFormValidation.disactivateButton(avatarPopupSubmitButton);
-  avatarPopupFormValidation.resetInputError(avatarInput)
+  avatarPopupFormValidation.resetInputError(avatarInput);
   popupAvatar.open();
 });
 
 
 editButton.addEventListener('click', () => {
-  infoPopupFormValidation.resetInputError(popupInfoEdit)
+  infoPopupFormValidation.resetInputError(popupInfoEdit);
   imageAdderPopupFormValidation.activateButton(editButton);
   const currentUserInfo = newUserInfo.getUserInfo();
   inputName.value = currentUserInfo.name;
@@ -140,11 +141,10 @@ editButton.addEventListener('click', () => {
 
 addButton.addEventListener('click', () => {
   imageAdderPopupFormValidation.disactivateButton(buttonElement);
-  infoPopupFormValidation.resetInputError(popupImage)
+  infoPopupFormValidation.resetInputError(popupImage);
   imagePopup.open();
 })
 
-// gridCard.renderItems(initialCards);
 avatarPopupFormValidation.enableValidation();
 imageAdderPopupFormValidation.enableValidation();
 infoPopupFormValidation.enableValidation();
@@ -152,3 +152,4 @@ infoPopup.setEventListeners();
 imagePopup.setEventListeners();
 imageViewerPopup.setEventListeners();
 popupAvatar.setEventListeners();
+confirmPopup.setEventListeners();

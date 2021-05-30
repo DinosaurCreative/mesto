@@ -74,7 +74,6 @@ export  class Api {
       }
     })
     .then(res => this._checkServerResponse(res))
-    .catch(err => console.log(`Ошибка: ${err}`))
   }
 
   changeAvatar(link) {

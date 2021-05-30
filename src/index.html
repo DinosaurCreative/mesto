@@ -53,34 +53,32 @@
         <span class="popup__input-error popup-title-error"></span>
         <input type="url" placeholder="Ссылка на картинку" name="link" id="popup-link" class="popup__input popup__input_type_image-link" required>
         <span class="popup__input-error popup-link-error"></span>
-        <input class="popup__save-btn popup__save-btn_type_image" value="Создать" type="submit">
+        <input class="popup__save-btn popup__save-btn_type_image" value="Сохранить" type="submit">
       </form>
       <button class="popup__cross popup__cross_type_image" aria-label="Закрыть без сохранения" type="button"></button>
     </div>
   </div>
-  
   <div class="popup popup_type_avatar">
     <div class="popup__container">
       <h3 class="popup__title">Обновить аватар</h3>
       <form class="popup__form popup__form_type_avatar" name="popup-form" novalidate>
         <input type="url" placeholder="Ссылка на аватар" name="link" id="popup-link" class="popup__input popup__input_type_avatar-link" required>
         <span class="popup__input-error popup-link-error"></span>
-        <input class="popup__save-btn popup__save-btn_type_avatar" value="Создать" type="submit">
+        <input class="popup__save-btn popup__save-btn_type_avatar" value="Сохранить" type="submit">
       </form>
       <button class="popup__cross popup__cross_type_avatar" aria-label="Закрыть без сохранения" type="button"></button>
     </div>
   </div>
-
   <div class="popup popup_type_delete-confirm">
     <div class="popup__container">
       <h3 class="popup__title">Вы уверены?</h3>
-      <form class="popup__form popup__form_delete-confirm" name="popup-form" novalidate></form>
+      <form class="popup__form popup__form_type_delete-confirm">
         <button class="popup__save-btn popup__delete-btn_type_delete-confirm" value="Да" type="submit">Да</button>
       </form> 
       <button class="popup__cross popup__cross_type_confirm-delete" aria-label="Отмена" type="button"></button>
     </div>
   </div>
-  
+
   <div class="popup popup_type_viewer">
     <div class="popup__photo-wrapper">
       <figure class="popup__photo-container">

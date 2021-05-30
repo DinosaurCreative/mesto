@@ -28,7 +28,7 @@ export const config = {
 };
 // Территория эксперементов
 export const popupDeletePic = page.querySelector('.popup_type_delete-confirm');  // Popup подтверждения удаления фото
-export const popupAvatarEdit = page.querySelector('.popup_type_avatar'); // Попап добавления аватарки
+export const popupAvatarEdit = page.querySelector('.popup_type_avatar');
 export const apiKeys = { address: 'https://nomoreparties.co/v1/cohort-24/', token: '1b42587b-1212-49d2-8dac-fba90d326288' }
 export const avatar  = page.querySelector('.profile__photo');
 export const avatarInput = page.querySelector('.popup__input_type_avatar-link');
