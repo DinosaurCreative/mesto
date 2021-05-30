@@ -36,7 +36,7 @@ export  class Api {
 
 
   setNewProfileData(data) {
-    fetch(`${this._address}users/me`, {
+   return fetch(`${this._address}users/me`, {
       method: 'PATCH',
       headers: {
         authorization: this._token,
@@ -44,10 +44,10 @@ export  class Api {
       },
       body: JSON.stringify({
         name: data.name,
-        about: data.occupation
+        about: data.about
       })
     })
-    .then(res => this._checkServerResponse(res))
+    .then(res => {this._checkServerResponse(res)})
   }
 
   postImage(data) {
@@ -66,7 +66,7 @@ export  class Api {
   }
 
   deleteImage(id) {
-    fetch(`${this._address}cards/${id}`, {
+   return fetch(`${this._address}cards/${id}`, {
       method: 'DELETE',
       headers:{
         authorization: this._token,

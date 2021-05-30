@@ -81,12 +81,6 @@ const imagePopup = new PopupWithForm(popupImage, items => {
 
 const gridCard = new Section({
   renderer: data => {
-    // data.likes.forEach(person => {
-    //   if(person._id = "4d426ed11c4589547aeb84e9") {
-
-    //   }
-
-    // })
     const card = createCard(data);
     gridCard.addItem(card.generateCard());
   }
@@ -111,6 +105,11 @@ api.getProfileData()
 
 
 const infoPopup = new PopupWithForm(popupInfoEdit, () => {
+  console.log(infoPopup._getInputValues());
+  api.setNewProfileData(infoPopup._getInputValues())
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
+
   newUserInfo.setUserInfo(infoPopup._getInputValues())
 });
 
