@@ -37,7 +37,7 @@ import { avatarPopupSubmitButton } from '../utils/constants.js';
 
 const createCard = items => {
   const card = new Card(
-    items , cardHandlerClick,'#grid_item', api)
+    items , cardHandlerClick,'#grid_item', api, "4d426ed11c4589547aeb84e9")
   return card;
 }
 
@@ -81,8 +81,13 @@ const imagePopup = new PopupWithForm(popupImage, items => {
 
 const gridCard = new Section({
   renderer: data => {
+    // data.likes.forEach(person => {
+    //   if(person._id = "4d426ed11c4589547aeb84e9") {
+
+    //   }
+
+    // })
     const card = createCard(data);
-    // console.log(card._isLiked);
     gridCard.addItem(card.generateCard());
   }
 }, gridList);
