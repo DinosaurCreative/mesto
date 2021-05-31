@@ -14,6 +14,7 @@ export class PopupWithConfirm extends Popup{
     this._id = id;
     this._handleDeleteButton = handleDeleteButton;
   }
+
   _showTextWhileSaving(condition) {
     if(condition) {
       this._saveButton.value = 'Удаляю...'
@@ -28,10 +29,9 @@ export class PopupWithConfirm extends Popup{
       evt.preventDefault();
       this._showTextWhileSaving(true)
       this._api.deleteImage(this._id)
-        .then(res => 'Вероятно надо использовать приходлящие данные')
+        .then(res => this._handleDeleteButton(this._cardElement))
         .catch(err => console.log(`Ошибка: ${err}`))
         .finally(() => this._showTextWhileSaving(false))
-      this._handleDeleteButton(this._cardElement);
       this.close();
     })
   }

@@ -47,6 +47,17 @@ const newUserInfo = new UserInfo({
 });
 
 const confirmPopup = new PopupWithConfirm(popupDeletePic, api);
+//
+
+const confirmPopup1 = new PopupWithConfirm(popupDeletePic, item => {
+  api.deleteImage(item)
+        .then(res => 'Вероятно надо использовать приходлящие данные')
+        .catch(err => console.log(`Ошибка: ${err}`))
+        .finally(() => this._showTextWhileSaving(false))
+});
+
+
+//
 
 const popupAvatar = new PopupWithForm(popupAvatarEdit, item => {  
   popupAvatar.showTextWhileSaving(true)
