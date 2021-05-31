@@ -40,7 +40,6 @@ const createCard = items => {
 
 const api = new Api(apiKeys);
 
-
 const newUserInfo = new UserInfo({
   nameSelector: profileName,
   occupationSelector: profileOccupation,
