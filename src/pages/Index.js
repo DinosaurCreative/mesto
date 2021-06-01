@@ -51,16 +51,10 @@ const decreaseLike = ( id, likeContainer) => {
         .catch(err => console.log(`Ошибка при уменьшении лайков ${err}`))
 }
 
-const createCard1 = items => {
-  const card = new Card( items , cardHandlerClick,'#grid_item', api, "4d426ed11c4589547aeb84e9", confirmPopup);
-  return card;
-}
-
 const createCard = items => {
   const card = new Card( items , cardHandlerClick,'#grid_item', "4d426ed11c4589547aeb84e9", confirmPopup, decreaseLike, increaseLike);
   return card;
 }
-
 
 const newUserInfo = new UserInfo({
   nameSelector: profileName,
@@ -68,11 +62,18 @@ const newUserInfo = new UserInfo({
   avatarSelector: avatar
 });
 
-const confirmPopup = new PopupWithConfirm(popupDeletePic, api);
+const deleteImageHandler = (id, handleDeleteButton, cardElement) => {
+  api.deleteImage(id)
+    .then(() => handleDeleteButton(cardElement))
+    .catch(err => console.log(`Карточка не удалена по причине: ${err}`))
+    .finally(() => confirmPopup.close())
+}
+
+const confirmPopup = new PopupWithConfirm(popupDeletePic, deleteImageHandler);
 
 const popupAvatar = new PopupWithForm(popupAvatarEdit, item => {  
   popupAvatar.showTextWhileSaving(true)
-    api.changeAvatar(item.link)
+   return api.changeAvatar(item.link)
       .then(res => {
         newUserInfo.setNewAvatar(res.avatar);
       })
