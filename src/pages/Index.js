@@ -37,18 +37,18 @@ const api = new Api(apiKeys);
 
 const increaseLike = (id, likeContainer) => {
   api.increaseLike(id)
-        .then(res => {
-          likeContainer.textContent = res.likes.length;
-        })
-        .catch(err => console.log(`Ошибка при увеличении лайков ${err}`))
+    .then(res => {
+      likeContainer.textContent = res.likes.length;
+    })
+    .catch(err => console.log(`Ошибка при увеличении лайков ${err}`))
 }
 
 const decreaseLike = ( id, likeContainer) => {
   api.reduceLike(id) 
-        .then(res => {
-          likeContainer.textContent = res.likes.length;
-        })
-        .catch(err => console.log(`Ошибка при уменьшении лайков ${err}`))
+    .then(res => {
+      likeContainer.textContent = res.likes.length;
+    })
+    .catch(err => console.log(`Ошибка при уменьшении лайков ${err}`))
 }
 
 const createCard = items => {
@@ -64,43 +64,36 @@ const newUserInfo = new UserInfo({
 
 const deleteImageHandler = (id, handleDeleteButton, cardElement) => {
   api.deleteImage(id)
-    .then(() => handleDeleteButton(cardElement))
+    .then(() => {
+      handleDeleteButton(cardElement);
+      confirmPopup.close();
+    })
     .catch(err => console.log(`Карточка не удалена по причине: ${err}`))
-    .finally(() => confirmPopup.close())
 }
 
 const confirmPopup = new PopupWithConfirm(popupDeletePic, deleteImageHandler);
 
-const popupAvatar = new PopupWithForm(popupAvatarEdit, item => {  
-  popupAvatar.showTextWhileSaving(true)
-   return api.changeAvatar(item.link)
-      .then(res => {
-        newUserInfo.setNewAvatar(res.avatar);
-      })
-      .catch(err => console.log(`Ошибка при добавлении нового аватара: ${err}`))
-      .finally(() => {
-        popupAvatar.showTextWhileSaving(false);
-      })
-  })    
+const popupAvatar = new PopupWithForm(popupAvatarEdit, item => {
+  api.changeAvatar(item.link)
+    .then(res => {
+      newUserInfo.setNewAvatar(res.avatar);
+      popupAvatar.close();
+    })
+    .catch(err => console.log(`Ошибка при добавлении нового аватара: ${err}`))
+  })
 
 api.getImages()
-  .then(res => {
-    gridCard.renderItems(res.reverse());
-  })
-  .catch(err => console.log(err));
+  .then(res => gridCard.renderItems(res.reverse()))
+  .catch(err => console.log(err))
 
 const imagePopup = new PopupWithForm(popupImage, items => {
-  imagePopup.showTextWhileSaving(true)  ;
   api.postImage(items)
-      .then(res => {
-        const card = createCard(res);
-        gridCard.addItem(card.generateCard());
-      })
-      .catch(err => console.log(err))
-      .finally(() => {
-        imagePopup.showTextWhileSaving(false);
-        imagePopup.close(); 
-      })
+    .then(res => {
+      const card = createCard(res);
+      gridCard.addItem(card.generateCard());
+      imagePopup.close();
+    })
+    .catch(err => console.log(err))
 })
 
 const gridCard = new Section({
@@ -116,24 +109,22 @@ const imageAdderPopupFormValidation = new FormValidator(config, submitChangesIma
 const imageViewerPopup = new PopupWithImage(popupViewer);
 
 api.getProfileData()
-  .then((data) => {
+  .then(data => {
     newUserInfo.setUserInfo({
       name: data.name,
-      about: data.about, 
+      about: data.about,
     })
     newUserInfo.setNewAvatar(data.avatar);
   })
   .catch(err => console.log(`Ошибка: ${err}`))
 
-const infoPopup = new PopupWithForm(popupInfoEdit, () => {
-  infoPopup.showTextWhileSaving(true);
-  api.setNewProfileData(infoPopup._getInputValues())
-    .then((res)=> res )
-    .catch(err => console.log(err))
-    .finally(() => {
-      infoPopup.showTextWhileSaving(false);
+const infoPopup = new PopupWithForm(popupInfoEdit, data => {
+  api.setNewProfileData(data)
+    .then(res => {
+      newUserInfo.setUserInfo(res);
+      infoPopup.close();
     })
-  newUserInfo.setUserInfo(infoPopup._getInputValues());
+    .catch(err => console.log(`Ошибка произошла по причине: ${err}`))
 });
 
 const cardHandlerClick = (name, link) => {

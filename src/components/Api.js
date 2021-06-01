@@ -1,4 +1,4 @@
-export  class Api {
+export class Api {
   constructor({address, token}) {
     this._address = address;
     this._token = token; 
@@ -17,7 +17,7 @@ export  class Api {
         method: 'GET',
         headers: {
           authorization: this._token,
-          'Content-Type': 'application/json' 
+          'Content-Type': 'application/json'
         }
       })
       .then(res => this._checkServerResponse(res))
@@ -28,7 +28,7 @@ export  class Api {
       method: 'GET',
       headers: {
         authorization: this._token,
-        'Content-Type': 'application/json' 
+        'Content-Type': 'application/json'
       }
     })
     .then(res => this._checkServerResponse(res))
@@ -47,7 +47,7 @@ export  class Api {
         about: data.about
       })
     })
-    .then(res => {this._checkServerResponse(res)})
+    .then(res => this._checkServerResponse(res))
   }
 
   postImage(data) {
