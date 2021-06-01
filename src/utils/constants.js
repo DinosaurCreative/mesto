@@ -17,6 +17,7 @@ export const inputlink = page.querySelector('.popup__input_type_image-link');
 export const popupViewer = page.querySelector('.popup_type_viewer');
 export const profileEditorSubmitBtn = popupInfoEdit.querySelector('.popup__save-btn');
 export const buttonElement = popupImage.querySelector('.popup__save-btn');
+export const saveButtonInfoEditPopup = popupInfoEdit.querySelector('.popup__save-btn');
 export const config = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
@@ -26,8 +27,7 @@ export const config = {
   errorClass: 'popup__input-error_visible',
   errorSpan: '.popup__input-error'
 };
-// Территория эксперементов
-export const popupDeletePic = page.querySelector('.popup_type_delete-confirm');  // Popup подтверждения удаления фото
+export const popupDeletePic = page.querySelector('.popup_type_delete-confirm');
 export const popupAvatarEdit = page.querySelector('.popup_type_avatar');
 export const apiKeys = { address: 'https://nomoreparties.co/v1/cohort-24/', token: '1b42587b-1212-49d2-8dac-fba90d326288' }
 export const avatar  = page.querySelector('.profile__photo');

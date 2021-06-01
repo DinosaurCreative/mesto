@@ -13,6 +13,7 @@ import {
   inputOccupation,
   gridList,
   popupDeletePic,
+  saveButtonInfoEditPopup
 } from '../utils/constants.js'
 import { popupViewer } from '../utils/constants.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
@@ -47,17 +48,6 @@ const newUserInfo = new UserInfo({
 });
 
 const confirmPopup = new PopupWithConfirm(popupDeletePic, api);
-//
-
-const confirmPopup1 = new PopupWithConfirm(popupDeletePic, item => {
-  api.deleteImage(item)
-        .then(res => 'Вероятно надо использовать приходлящие данные')
-        .catch(err => console.log(`Ошибка: ${err}`))
-        .finally(() => this._showTextWhileSaving(false))
-});
-
-
-//
 
 const popupAvatar = new PopupWithForm(popupAvatarEdit, item => {  
   popupAvatar.showTextWhileSaving(true)
@@ -103,7 +93,6 @@ const infoPopupFormValidation = new FormValidator(config, inputFormEditor);
 const imageAdderPopupFormValidation = new FormValidator(config, submitChangesImageHandler);
 const imageViewerPopup = new PopupWithImage(popupViewer);
 
-
 api.getProfileData()
   .then((data) => {
     newUserInfo.setUserInfo({
@@ -113,7 +102,6 @@ api.getProfileData()
     newUserInfo.setNewAvatar(data.avatar);
   })
   .catch(err => console.log(`Ошибка: ${err}`))
-
 
 const infoPopup = new PopupWithForm(popupInfoEdit, () => {
   infoPopup.showTextWhileSaving(true);
@@ -139,10 +127,9 @@ avatarEditButton.addEventListener('click', () => {
   popupAvatar.open();
 });
 
-
 editButton.addEventListener('click', () => {
   infoPopupFormValidation.resetInputError(popupInfoEdit);
-  imageAdderPopupFormValidation.activateButton(editButton);
+  infoPopupFormValidation.activateButton(saveButtonInfoEditPopup);
   const currentUserInfo = newUserInfo.getUserInfo();
   inputName.value = currentUserInfo.name;
   inputOccupation.value = currentUserInfo.occupation;
@@ -151,7 +138,7 @@ editButton.addEventListener('click', () => {
 
 addButton.addEventListener('click', () => {
   imageAdderPopupFormValidation.disactivateButton(buttonElement);
-  infoPopupFormValidation.resetInputError(popupImage);
+  imageAdderPopupFormValidation.resetInputError(popupImage);
   imagePopup.open();
 })
 
