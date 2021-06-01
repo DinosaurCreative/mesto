@@ -13,7 +13,8 @@ import {
   inputOccupation,
   gridList,
   popupDeletePic,
-  saveButtonInfoEditPopup
+  saveButtonInfoEditPopup,
+  avatarSaveButton
 } from '../utils/constants.js'
 import { popupViewer } from '../utils/constants.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
@@ -76,15 +77,18 @@ const confirmPopup = new PopupWithConfirm(popupDeletePic, deleteImageHandler);
 const popupAvatar = new PopupWithForm(popupAvatarEdit, item => {
   api.changeAvatar(item.link)
     .then(res => {
-      newUserInfo.setNewAvatar(res.avatar);
+      newUserInfo.setNewAvatar(res);
       popupAvatar.close();
     })
     .catch(err => console.log(`Ошибка при добавлении нового аватара: ${err}`))
   })
 
-api.getImages()
-  .then(res => gridCard.renderItems(res.reverse()))
-  .catch(err => console.log(err))
+Promise.all([api.getImages(), api.getProfileData()])
+  .then(([cardsData, userData]) => {
+    gridCard.renderItems(cardsData.reverse());
+    newUserInfo.setUserInfo({ name: userData.name, about: userData.about, avatar: userData.avatar});
+  })
+  .catch(err => console.log(`Ошибка: ${err}`))
 
 const imagePopup = new PopupWithForm(popupImage, items => {
   api.postImage(items)
@@ -108,16 +112,6 @@ const infoPopupFormValidation = new FormValidator(config, inputFormEditor);
 const imageAdderPopupFormValidation = new FormValidator(config, submitChangesImageHandler);
 const imageViewerPopup = new PopupWithImage(popupViewer);
 
-api.getProfileData()
-  .then(data => {
-    newUserInfo.setUserInfo({
-      name: data.name,
-      about: data.about,
-    })
-    newUserInfo.setNewAvatar(data.avatar);
-  })
-  .catch(err => console.log(`Ошибка: ${err}`))
-
 const infoPopup = new PopupWithForm(popupInfoEdit, data => {
   api.setNewProfileData(data)
     .then(res => {
@@ -137,15 +131,16 @@ const cardHandlerClick = (name, link) => {
 avatarEditButton.addEventListener('click', () => {
   avatarPopupFormValidation.disactivateButton(avatarPopupSubmitButton);
   avatarPopupFormValidation.resetInputError(avatarInput);
+  avatarPopupFormValidation.activateButton(avatarSaveButton);
+  avatarInput.value = (newUserInfo.getUserInfo()).avatar;
   popupAvatar.open();
 });
 
 editButton.addEventListener('click', () => {
   infoPopupFormValidation.resetInputError(popupInfoEdit);
   infoPopupFormValidation.activateButton(saveButtonInfoEditPopup);
-  const currentUserInfo = newUserInfo.getUserInfo();
-  inputName.value = currentUserInfo.name;
-  inputOccupation.value = currentUserInfo.occupation;
+  inputName.value = (newUserInfo.getUserInfo()).name;
+  inputOccupation.value = (newUserInfo.getUserInfo()).occupation;
   infoPopup.open();
 })
 
