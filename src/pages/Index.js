@@ -33,13 +33,34 @@ import { avatarForm } from '../utils/constants.js';
 import { avatarEditButton } from '../utils/constants.js';
 import { avatarPopupSubmitButton } from '../utils/constants.js';
 
+const api = new Api(apiKeys);
 
-const createCard = items => {
+const increaseLike = (id, likeContainer) => {
+  api.increaseLike(id)
+        .then(res => {
+          likeContainer.textContent = res.likes.length;
+        })
+        .catch(err => console.log(`Ошибка при увеличении лайков ${err}`))
+}
+
+const decreaseLike = ( id, likeContainer) => {
+  api.reduceLike(id) 
+        .then(res => {
+          likeContainer.textContent = res.likes.length;
+        })
+        .catch(err => console.log(`Ошибка при уменьшении лайков ${err}`))
+}
+
+const createCard1 = items => {
   const card = new Card( items , cardHandlerClick,'#grid_item', api, "4d426ed11c4589547aeb84e9", confirmPopup);
   return card;
 }
 
-const api = new Api(apiKeys);
+const createCard = items => {
+  const card = new Card( items , cardHandlerClick,'#grid_item', "4d426ed11c4589547aeb84e9", confirmPopup, decreaseLike, increaseLike);
+  return card;
+}
+
 
 const newUserInfo = new UserInfo({
   nameSelector: profileName,

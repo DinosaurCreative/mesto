@@ -1,5 +1,7 @@
 export class Card {
-  constructor(data, handleCardClick, templateSelector, api, myId, confirmPopup) {
+  constructor(data, handleCardClick, templateSelector, myId, confirmPopup, decrease, increase) {
+    this._decreaseLike = decrease;
+    this._increaseLike = increase;
     this._name = data.name;
     this._link = data.link;
     this._likes = data.likes;
@@ -16,7 +18,6 @@ export class Card {
     this._gridImage = this._cardElement.querySelector('.grid__image');
     this._gridDeletreButton = this._cardElement.querySelector('.grid__delete-btn');
     this._isLiked = false;
-    this._api = api;
   }
 
   _getTemplate() {
@@ -37,28 +38,19 @@ export class Card {
   
   _countLikes() {
     this._handleLikeButton();
+
     if(!this._isLiked) {
-      this._api.increaseLike(this._id)
-        .then(res => {
-          this._likeContainer.textContent = res.likes.length;
-          this._isLiked = true;
-        })
-        .catch(err => console.log(`Ошибка при увеличении лайков ${err}`))
+      this._increaseLike( this._id, this._likeContainer );
     } else {
-      this._api.reduceLike(this._id) 
-        .then(res => {
-          this._likeContainer.textContent = res.likes.length;
-          this._isLiked = false;
-        })
-        .catch(err => console.log(`Ошибка при уменьшении лайков ${err}`))
+      this._decreaseLike( this._id, this._likeContainer )
     }
+    this._isLiked = !this._isLiked;
   }
 
   _activateDeleteButton() {
     if(this._data.owner._id == this._myId) {
       this._gridDeletreButton.classList.add('grid__delete-btn_type_visible');
     }
-
   }
 
   _handleLikeButton() {
