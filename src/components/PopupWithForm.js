@@ -13,10 +13,12 @@ export class PopupWithForm extends Popup {
     Array.from(this._popupElement.querySelectorAll('.popup__input')).forEach(item => inputValues[item.name] = item.value);
     return inputValues;
   }
+
   open() {
     super.open();
     this.showTextWhileSaving(false)
   }
+  
   close() {
     super.close();
     this._form.reset();
@@ -28,7 +30,6 @@ export class PopupWithForm extends Popup {
     } else {
       this._saveButton.value = 'Сохранить'
     }
-
   }
   setEventListeners() {
     super.setEventListeners();

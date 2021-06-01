@@ -25,7 +25,7 @@ export class Card {
     querySelector(this._templateSelector)
       .content
       .querySelector('.grid__item')
-      .cloneNode(true);      
+      .cloneNode(true);
       return cardElement;
   }
 
@@ -38,7 +38,6 @@ export class Card {
   
   _countLikes() {
     this._handleLikeButton();
-
     if(!this._isLiked) {
       this._increaseLike( this._id, this._likeContainer );
     } else {
