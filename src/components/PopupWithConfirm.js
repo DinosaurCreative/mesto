@@ -1,8 +1,8 @@
 import { Popup } from './Popup.js';
 
 export class PopupWithConfirm extends Popup{
-  constructor(popupSelector, deleteImageHandler) {
-    super(popupSelector);
+  constructor(popupElement, deleteImageHandler) {
+    super(popupElement);
     this._form = this._popupElement.querySelector('.popup__form');
     this._saveButton = this._popupElement.querySelector('.popup__save-btn');
     this._deleteImageHandler = deleteImageHandler;

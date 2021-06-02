@@ -1,16 +1,15 @@
 export class Card {
-  constructor(data, handleCardClick, templateSelector, myId, confirmPopup, decrease, increase) {
-    this._decreaseLike = decrease;
-    this._increaseLike = increase;
+  constructor(data, handleCardClick, cardTemplate, myId, confirmPopup, decreaseLike, increaseLike) {
+    this._decreaseLike = decreaseLike;
+    this._increaseLike = increaseLike;
     this._name = data.name;
     this._link = data.link;
     this._likes = data.likes;
-    this._owner = data.owner;
     this._id = data._id;
     this._myId = myId;
     this._data = data;
     this._confirmPopup = confirmPopup;
-    this._templateSelector = templateSelector;
+    this._cardTemplate = cardTemplate;
     this._handleCardClick = handleCardClick;
     this._cardElement = this._getTemplate();
     this._likeContainer = this._cardElement.querySelector('.grid__like-counter');
@@ -22,7 +21,7 @@ export class Card {
 
   _getTemplate() {
     const cardElement = document.
-    querySelector(this._templateSelector)
+    querySelector(this._cardTemplate)
       .content
       .querySelector('.grid__item')
       .cloneNode(true);

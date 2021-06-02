@@ -14,7 +14,8 @@ import {
   gridList,
   popupDeletePic,
   saveButtonInfoEditPopup,
-  avatarSaveButton
+  avatarSaveButton,
+  cardTemplate,
 } from '../utils/constants.js'
 import { popupViewer } from '../utils/constants.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
@@ -33,6 +34,7 @@ import { avatarInput } from '../utils/constants.js';
 import { avatarForm } from '../utils/constants.js';
 import { avatarEditButton } from '../utils/constants.js';
 import { avatarPopupSubmitButton } from '../utils/constants.js';
+let userId = '';
 
 const api = new Api(apiKeys);
 
@@ -53,7 +55,7 @@ const decreaseLike = ( id, likeContainer) => {
 }
 
 const createCard = items => {
-  const card = new Card( items , cardHandlerClick,'#grid_item', "4d426ed11c4589547aeb84e9", confirmPopup, decreaseLike, increaseLike);
+  const card = new Card( items , cardHandlerClick, cardTemplate, userId, confirmPopup, decreaseLike, increaseLike);
   return card;
 }
 
@@ -82,9 +84,9 @@ const popupAvatar = new PopupWithForm(popupAvatarEdit, item => {
     })
     .catch(err => console.log(`Ошибка при добавлении нового аватара: ${err}`))
   })
-
 Promise.all([api.getImages(), api.getProfileData()])
   .then(([cardsData, userData]) => {
+    userId = userData._id;
     gridCard.renderItems(cardsData.reverse());
     newUserInfo.setUserInfo({ name: userData.name, about: userData.about, avatar: userData.avatar});
   })

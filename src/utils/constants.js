@@ -18,6 +18,7 @@ export const popupViewer = page.querySelector('.popup_type_viewer');
 export const profileEditorSubmitBtn = popupInfoEdit.querySelector('.popup__save-btn');
 export const buttonElement = popupImage.querySelector('.popup__save-btn');
 export const saveButtonInfoEditPopup = popupInfoEdit.querySelector('.popup__save-btn');
+export const cardTemplate = '#grid_item';
 export const config = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
@@ -35,4 +36,4 @@ export const avatarInput = page.querySelector('.popup__input_type_avatar-link');
 export const avatarSaveButton = page.querySelector('.popup__save-btn_type_avatar');
 export const avatarForm = page.querySelector('.popup__form_type_avatar');
 export const avatarEditButton = page.querySelector('.profile__edit-avatar');
-export const avatarPopupSubmitButton = popupAvatarEdit.querySelector('.popup__save-btn')
+export const avatarPopupSubmitButton = popupAvatarEdit.querySelector('.popup__save-btn');
